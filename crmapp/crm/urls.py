@@ -1,0 +1,19 @@
+from django.urls import path
+from django.conf.urls import include
+from crm import views
+
+# app_name = "crm"
+
+urlpatterns = [
+    path('', views.index, name='index'), 
+    path('userlogin', views.userlogin, name = 'userlogin'),
+    # path('usersignup', views.usersignup, name = 'usersignup'),
+    path('quotations', views.quotations, name = 'quotations'),
+    path('invoices', views.invoices, name = 'invoices'),
+    path('purchases', views.purchases, name = 'purchases'),
+    path('productservices', views.productservices, name = 'productservices'),
+    path('dashboard', views.dashboard, name='dashboard'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("land", views.landinglogin, name='land')
+]
+
