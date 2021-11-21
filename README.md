@@ -24,6 +24,10 @@ virtualenv venv
 ```
 source venv/bin/activate
 ```
+### Install required depemddencies:    
+```
+py -m pip install -r requirements.txt
+```
 ### Run the project
 ```
 $ python manage.py runserver
