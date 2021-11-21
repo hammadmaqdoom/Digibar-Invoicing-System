@@ -64,7 +64,7 @@ class ProductsAndServicesForm(forms.Form):
     rate = forms.IntegerField(label='Rate')
     
 
-class InvoiceForm(forms.Form):
+class InvoiceForm(forms.Form): # add fields
     STAT = (
         ('A', 'Approved'),
         ('NA', 'NotApproved')

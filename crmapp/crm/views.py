@@ -39,7 +39,7 @@ def quotations(request):
     return HttpResponse("Quotations")
 
 @login_required
-def invoices(request):                                          # make html files
+def invoices(request):                                        
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         if form.is_valid():
@@ -47,7 +47,7 @@ def invoices(request):                                          # make html file
     else:
         form =InvoiceForm()
     
-    return render(request, 'Invoice.html', {'form': form})
+    return render(request, 'invoice.html', {'form': form})
 
 @login_required
 def purchases(request):
@@ -61,7 +61,7 @@ def purchases(request):
     return render(request, 'purchases.html', {'form': form})
 
 @login_required
-def productandservice(request):                                         #make html file
+def productandservice(request):                                        
     if request.method == 'POST':
         form =  ProductsAndServicesForm(request.POST)
         if form.is_valid():
@@ -73,7 +73,7 @@ def productandservice(request):                                         #make ht
 
 
 @login_required
-def transaction(request):                                         #make html file
+def transaction(request):                                         
     if request.method == 'POST':
         form =  TransactionForm(request.POST)
         if form.is_valid():
