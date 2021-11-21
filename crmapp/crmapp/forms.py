@@ -1,4 +1,5 @@
 from django import forms
+from crm.models import Purchases, Sales
 # from django.contrib.auth.forms import UserCreationForm
 
 # class NameForm(forms.Form):
@@ -71,7 +72,9 @@ class Sales(forms.Form):
     status = forms.MultipleChoiceField(choices=STAT)
 
 
-class Purchases(forms.Form):
+class PurchasesForm(forms.Form):
+    businessID = forms.IntegerField()
+    itemID = forms.IntegerField()
     STAT = (
         ('A', 'Approved'),
         ('NA', 'NotApproved')

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse
-# from crmapp.forms import CustomUserCreationForm
+from crmapp.forms import PurchasesForm
 # Create your views here.
 
 def index(request):
@@ -44,7 +44,14 @@ def invoices(request):
 
 @login_required
 def purchases(request):
-    return HttpResponse("purchases")
+    if request.method == 'POST':
+        form = PurchasesForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form = PurchasesForm()
+    
+    return render(request, 'purchases.html', {'form': form})
 
 @login_required
 def productservices(request):
