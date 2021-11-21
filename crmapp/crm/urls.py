@@ -11,9 +11,11 @@ urlpatterns = [
     path('quotations', views.quotations, name = 'quotations'),
     path('invoices', views.invoices, name = 'invoices'),
     path('purchases', views.purchases, name = 'purchases'),
-    path('productservices', views.productservices, name = 'productservices'),
+    path('productandservice', views.productandservice, name = 'productandservice'),
     path('dashboard', views.dashboard, name='dashboard'),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("land", views.landinglogin, name='land')
+    path("land", views.landinglogin, name='land'),
+    path("transaction", views.transaction, name='transaction'),
+
 ]
 

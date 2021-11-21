@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from crmapp.forms import PurchasesForm
+from crmapp.forms import PurchasesForm,InvoiceForm,ProductsAndServicesForm , TransactionForm
 # Create your views here.
 
 def index(request):
@@ -39,8 +39,15 @@ def quotations(request):
     return HttpResponse("Quotations")
 
 @login_required
-def invoices(request):
-    return HttpResponse("invoices")
+def invoices(request):                                          # make html files
+    if request.method == 'POST':
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form =InvoiceForm()
+    
+    return render(request, 'Invoice.html', {'form': form})
 
 @login_required
 def purchases(request):
@@ -54,5 +61,24 @@ def purchases(request):
     return render(request, 'purchases.html', {'form': form})
 
 @login_required
-def productservices(request):
-    return HttpResponse("productservices")
+def productandservice(request):                                         #make html file
+    if request.method == 'POST':
+        form =  ProductsAndServicesForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form = ProductsAndServicesForm()
+    
+    return render(request, 'productandservice.html', {'form': form})
+
+
+@login_required
+def transaction(request):                                         #make html file
+    if request.method == 'POST':
+        form =  TransactionForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form = TransactionForm()
+    
+    return render(request, 'transaction.html', {'form': form})

@@ -56,7 +56,7 @@ class Business(forms.Form):
 #     def __str__(self):
 #         return str(self.userID)
 
-class ProductsAndServices(forms.Form):
+class ProductsAndServicesForm(forms.Form):
     
     psName = forms.CharField(label='Name')
     isProduct = forms.BooleanField()
@@ -64,7 +64,7 @@ class ProductsAndServices(forms.Form):
     rate = forms.IntegerField(label='Rate')
     
 
-class Sales(forms.Form):
+class InvoiceForm(forms.Form):
     STAT = (
         ('A', 'Approved'),
         ('NA', 'NotApproved')
@@ -82,7 +82,7 @@ class PurchasesForm(forms.Form):
     status = forms.MultipleChoiceField(choices=STAT)
 
 
-class Transaction(forms.Form):
+class TransactionForm(forms.Form):
     # date = forms.DateTimeField()
     debit = forms.IntegerField(label='Debit Amount')
     credit = forms.IntegerField(label='Credit Amount')
