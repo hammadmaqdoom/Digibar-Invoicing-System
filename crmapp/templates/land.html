@@ -99,21 +99,14 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Light Coin</h4>
-                    <span>Plan</span>
+                    <h4 class="text-uppercase">Create a new Business?</h4>
+                    <span></span>
                     <hr class="line-primary">
                   </div>
                 </div>
-                <div class="row">
-                  <ul class="list-group">
-                    <li class="list-group-item">50 messages</li>
-                    <li class="list-group-item">100 emails</li>
-                    <li class="list-group-item">24/7 Support</li>
-                  </ul>
-                </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btn-primary btn-simple">Get plan</button>
+                <button class="btn btn-primary btn-simple">Start Now!</button>
               </div>
             </div>
           </div>
@@ -125,21 +118,21 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Dark Coin</h4>
-                    <span>Plan</span>
+                    <h4 class="text-uppercase">Access existing business</h4>
+                    <span></span>
                     <hr class="line-success">
                   </div>
                 </div>
                 <div class="row">
                   <ul class="list-group">
-                    <li class="list-group-item">150 messages</li>
-                    <li class="list-group-item">1000 emails</li>
-                    <li class="list-group-item">24/7 Support</li>
+                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 1</a>
+                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 2</a>
+                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 3</a>
                   </ul>
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btn-success btn-simple">Get plan</button>
+                {% comment %} <button class="btn btn-success btn-simple">Get plan</button> {% endcomment %}
               </div>
             </div>
           </div>
