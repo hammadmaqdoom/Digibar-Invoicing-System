@@ -59,6 +59,18 @@
           </div>
         </div>
         <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'invoices' %}">Sales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'purchases' %}">Purchases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'transaction' %}">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'productandservice' %}">Product and Services</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'logout' %}">
               <i class="tim-icons icon-cloud-download-93"></i> Logout
