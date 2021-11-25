@@ -92,7 +92,7 @@
         <div class="content-center brand">
           <form class="form" method="post" novalidate>
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_ul }}
             <button type="submit">Submit</button>
             </form>
           

@@ -65,6 +65,10 @@ class ProductsAndServicesForm(forms.Form):
     
 
 class InvoiceForm(forms.Form): # add fields
+    salesID = forms.IntegerField()
+    companyID = forms.IntegerField()
+    businessID = forms.IntegerField()
+    itemID = forms.IntegerField()
     STAT = (
         ('A', 'Approved'),
         ('NA', 'NotApproved')
@@ -73,6 +77,8 @@ class InvoiceForm(forms.Form): # add fields
 
 
 class PurchasesForm(forms.Form):
+    billID = forms.IntegerField()
+    companyID = forms.IntegerField()
     businessID = forms.IntegerField()
     itemID = forms.IntegerField()
     STAT = (
@@ -83,6 +89,10 @@ class PurchasesForm(forms.Form):
 
 
 class TransactionForm(forms.Form):
+    transactionID = forms.IntegerField()
+    billID = forms.IntegerField()
+    salesID = forms.IntegerField()
+    date = forms.DateTimeField()
     # date = forms.DateTimeField()
     debit = forms.IntegerField(label='Debit Amount')
     credit = forms.IntegerField(label='Credit Amount')
