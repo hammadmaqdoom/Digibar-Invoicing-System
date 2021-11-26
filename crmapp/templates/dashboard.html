@@ -103,60 +103,138 @@
         <div class="row">
           <div class="col-md-6">
             <div class="card card-plain">
-              <div class="card-header">
+              {% comment %} <div class="card-header">
                 <h1 class="profile-title text-left">My Sales</h1>
                 <h5 class="text-on-back">03</h5>
-              </div>
-              <div class="card-body">
-                <form>
-                  <div class="row">
-                    
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Company</label>
-                        <input type="text" class="form-control" value="Your Preference">
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-primary btn-round float-left" rel="tooltip" data-original-title="Can't wait for your message" data-placement="right">Add Preference</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-          <br /> <br /> <br /> <br /> <br />
-            <div class="card card-coin card-plain">
+              </div> {% endcomment %}
+              <div class="col-lg-6 col-md-6 ml-auto mr-auto">
+                <br /> <br /> <br /> <br /> <br />
+              <div class="card card-coin card-plain">
               <div class="card-header">
-                <h4 class="title">Your Preferences</h4>
+                <h4 class="title">Purchases</h4>
               </div>
               <div class="card-body justify-content-center">
                 
                 <div class="table-responsive">
                       <table class="table tablesorter " id="plain-table">
                         <thead class=" text-primary">
-                          <tr>
+                          {% comment %} <tr>
                             <th class="header">
                               Preferences
                             </th>
-                          </tr>
+                          </tr> {% endcomment %}
                         </thead>
                         <tbody>
-                        {% for prf in stu %}
-                          <tr>
-                            <td>
-                              {{ prf.interest}}
-                            </td>
-                          </tr>
-                          {% endfor %}
-                    
+                        {% if Purchases %}
+                            <ul>
+                                {% for category in Purchases %}
+                                <li>{{ category.companyID }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <strong>There are no categories present.</strong>
+                        {% endif %}
                         </tbody>
+                      
                       </table>
                     </div>
                   </div>
               </div>
             </div>
           </div>
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-6">
+            <div class="card card-plain">
+              {% comment %} <div class="card-header">
+                <h1 class="profile-title text-left">My Sales</h1>
+                <h5 class="text-on-back">03</h5>
+              </div> {% endcomment %}
+              <div class="col-lg-14 col-md-14 ml-auto mr-auto">
+                <br /> <br /> <br /> <br /> <br />
+              <div class="card card-coin card-plain">
+              <div class="card-header">
+                <h4 class="title">Product and Services</h4>
+              </div>
+              <div class="card-body justify-content-center">
+                
+                <div class="table-responsive">
+                      <table class="table tablesorter " id="plain-table">
+                        <thead class=" text-primary">
+                          {% comment %} <tr>
+                            <th class="header">
+                              Preferences
+                            </th>
+                          </tr> {% endcomment %}
+                        </thead>
+                        <tbody>
+                        {% if productandservice %}
+                            <ul>
+                                {% for category in productandservice %}
+                                <li>{{ category.psName }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <strong>There are no categories present.</strong>
+                        {% endif %}
+                        </tbody>
+                      
+                      </table>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+                    {% comment %} <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Product and Service</label>
+                        <input type="text" class="form-control" value="Your Preference">
+                      </div>
+                    </div> {% endcomment %}
+                  </div>
+                  
+                {% comment %} <button type="submit" class="btn btn-primary btn-round float-left" rel="tooltip" data-original-title="Can't wait for your message" data-placement="right">Add Preference</button> {% endcomment %}
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 ml-auto mr-auto">
+          <br /> <br /> <br /> <br /> <br />
+            <div class="card card-coin card-plain">
+              <div class="card-header">
+                <h4 class="title">Sales</h4>
+              </div>
+              <div class="card-body justify-content-center">
+                
+                <div class="table-responsive">
+                      <table class="table tablesorter " id="plain-table">
+                        <thead class=" text-primary">
+                          {% comment %} <tr>
+                            <th class="header">
+                              Preferences
+                            </th>
+                          </tr> {% endcomment %}
+                        </thead>
+                        <tbody>
+                        {% if Sales %}
+                            <ul>
+                                {% for category in Sales %}
+                                <li>{{ category.companyID }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <strong>There are no categories present.</strong>
+                        {% endif %}
+                        </tbody>
+                      
+                      </table>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>

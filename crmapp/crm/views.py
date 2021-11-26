@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from crmapp.forms import PurchasesForm,InvoiceForm,ProductsAndServicesForm , TransactionForm
+from crm.models import Sales, Purchases, ProductsAndServices,Transaction
 # Create your views here.
 
 def index(request):
@@ -16,7 +17,19 @@ def landinglogin(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html', {})
+
+    # Query the database for a list of ALL categories currently stored.
+    # Order the categories by no. likes in descending order.
+    # Retrieve the top 5 only - or all if less than 5.
+    # Place the list in our context_dict dictionary which will be passed to the template engine.
+    sales_list = Sales.objects.order_by('businessID')[:5]
+    #context_dict = {'Sales': sales_list}
+    Purchases_list = Purchases.objects.order_by('businessID')[:5]
+    PNS_list = ProductsAndServices.objects.order_by('psName')[:5]
+    context_dict = {'Sales': sales_list,'Purchases': Purchases_list,'Product and Services': PNS_list}
+
+    # Render the response and send it back
+    return render(request, 'dashboard.html', context_dict)
 
 def userlogin(request):
     return HttpResponse("User Login Page")
