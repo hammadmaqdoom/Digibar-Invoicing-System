@@ -107,10 +107,61 @@
     <div class="wrapper">
       <div class="container">
         <div class="content-center brand">
-          <form class="form" method="post" novalidate>
+          <form class="form" method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_ul }}
-            <button type="submit">Submit</button>
+            {% comment %} {{ form.as_ul }}
+            <button type="submit">Submit</button> {% endcomment %}
+            {{ form.non_field_errors }}
+            <div class="row">
+            <div class="form-group">
+                {{ form.salesID.errors }}
+                </div>
+                <label for="{{ form.salesID.id_for_label }}">Sales ID:</label>
+                {{ form.salesID }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.companyID.errors }}
+                </div>
+                <label for="{{ form.companyID.id_for_label }}">Company:</label>
+                {{ form.companyID }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.businessID.errors }}
+                </div>
+                <label for="{{ form.businessID.id_for_label }}">Business:</label>
+                {{ form.businessID }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.itemID.errors }}
+                </div>
+                <label for="{{ form.itemID.id_for_label }}">Items</label>
+                {{ form.itemID }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon'>
+                {{ form.status.errors }}
+                </div>
+                <label for="{{ form.status.id_for_label }}">Quote Approved?</label>
+                {{ form.status }}
+            </div>
+            </div>
+            
+             <div class="card-footer">
+                  <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg">Get Started</a>
+                </div>
+            
+            
             </form>
           
         </div>

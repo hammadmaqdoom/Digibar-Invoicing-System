@@ -89,10 +89,10 @@ class Purchases(models.Model):
     businessID = models.ForeignKey(Business, on_delete=models.CASCADE)
     itemID = models.ForeignKey(ProductsAndServices, on_delete=models.CASCADE)
     STAT = (
-        ('A', 'Approved'),
-        ('NA', 'NotApproved')
+        ('Approved', 'Approved'),
+        ('Not Approved', 'Not Approved')
     )
-    status = models.CharField(max_length=2, choices=STAT)
+    status = models.CharField(max_length=64, choices=STAT)
     def __str__(self):
         return str(self.billID)
 

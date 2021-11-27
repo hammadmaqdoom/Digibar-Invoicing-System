@@ -64,16 +64,19 @@ class ProductsAndServicesForm(forms.Form):
     rate = forms.IntegerField(label='Rate')
     
 
-class InvoiceForm(forms.Form): # add fields
-    salesID = forms.IntegerField()
-    companyID = forms.IntegerField()
-    businessID = forms.IntegerField()
-    itemID = forms.IntegerField()
-    STAT = (
-        ('A', 'Approved'),
-        ('NA', 'NotApproved')
-    )
-    status = forms.MultipleChoiceField(choices=STAT)
+class InvoiceForm(forms.ModelForm): # add fields
+    class Meta():
+         model = Sales
+         fields = ('salesID','companyID','businessID','itemID','status')
+    # salesID = forms.IntegerField()
+    # companyID = forms.IntegerField()
+    # businessID = forms.IntegerField()
+    # itemID = forms.IntegerField()
+    # STAT = (
+    #     ('A', 'Approved'),
+    #     ('NA', 'NotApproved')
+    # )
+    # status = forms.MultipleChoiceField(choices=STAT)
 
 
 class PurchasesForm(forms.Form):
