@@ -16,7 +16,8 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("land", views.landinglogin, name='land'),
     path("transaction", views.transaction, name='transaction'),
-    path("view_invoices",views.view_invoices, name='view_invoices')
+    path("view_invoices",views.view_invoices, name='view_invoices'),
+    path('<id>/delete_sales', views.delete_view, name='delete_views' )
 
 ]
 

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from crmapp.forms import PurchasesForm,InvoiceForm,ProductsAndServicesForm , TransactionForm
 from crm.models import Sales, Purchases, ProductsAndServices,Transaction
@@ -73,6 +73,22 @@ def view_invoices(request):
     context["dataset"] = Sales.objects.all()
     
     return render(request, 'view_invoice.html', context)
+
+@login_required
+def delete_view(request):
+    context ={}
+    # fetch the object related to passed id
+    obj = get_object_or_404(Sales, id = id)
+ 
+ 
+    if request.method =="POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        return HttpResponseRedirect("view_invoices")
+ 
+    return render(request, "delete_sales.html", context)
 
 @login_required
 def purchases(request):
