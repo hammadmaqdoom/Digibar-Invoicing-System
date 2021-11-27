@@ -71,7 +71,11 @@ def purchases(request):
     if request.method == 'POST':
         form = PurchasesForm(request.POST)
         if form.is_valid():
-            pass  # does nothing, just trigger the validation
+            obj = Purchases() #gets new object
+            obj.companyID = form.cleaned_data['companyID']
+            obj.businessID = form.cleaned_data['businessID']
+            obj.itemID = form.cleaned_data['itemID']
+            obj.status = form.cleaned_data['status']  # does nothing, just trigger the validation
     else:
         form = PurchasesForm()
     
@@ -82,7 +86,13 @@ def productandservice(request):
     if request.method == 'POST':
         form =  ProductsAndServicesForm(request.POST)
         if form.is_valid():
-            pass  # does nothing, just trigger the validation
+            obj = ProductsAndServices() #gets new object
+            obj.itemID = form.cleaned_data['itemID']
+            obj.psName = form.cleaned_data['psName']
+            obj.isProduct = form.cleaned_data['isProduct']
+            obj.itemDescription = form.cleaned_data['date']
+            obj.rate = form.cleaned_data['rate']
+            
     else:
         form = ProductsAndServicesForm()
     
@@ -94,7 +104,12 @@ def transaction(request):
     if request.method == 'POST':
         form =  TransactionForm(request.POST)
         if form.is_valid():
-            pass  # does nothing, just trigger the validation
+            obj = Transaction() #gets new object
+            obj.transactionID = form.cleaned_data['transactionID']
+            obj.billID = form.cleaned_data['billID']
+            obj.date = form.cleaned_data['date']
+            obj.debit = form.cleaned_data['debit']
+            obj.credit = form.cleaned_data['credit']
     else:
         form = TransactionForm()
     
