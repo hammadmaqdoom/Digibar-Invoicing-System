@@ -51,7 +51,6 @@ def invoices(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         if form.is_valid():
-            pass  # does nothing, just trigger the validation
             obj = Sales() #gets new object
             obj.companyID = form.cleaned_data['companyID']
             obj.businessID = form.cleaned_data['businessID']
@@ -60,8 +59,6 @@ def invoices(request):
             #finally save the object in db
             obj.save()
             return HttpResponseRedirect('invoices')
-
-            # companyID    businessID    itemID status
     else:
         form =InvoiceForm()
 
