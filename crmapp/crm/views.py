@@ -67,6 +67,14 @@ def invoices(request):
     return render(request, 'invoice.html', context)
 
 @login_required
+def view_invoices(request):                                        
+    context ={}
+
+    context["dataset"] = Sales.objects.all()
+    
+    return render(request, 'view_invoice.html', context)
+
+@login_required
 def purchases(request):
     if request.method == 'POST':
         form = PurchasesForm(request.POST)
