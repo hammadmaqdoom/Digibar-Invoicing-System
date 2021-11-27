@@ -7,9 +7,9 @@ from crm.models import Company ,Purchases, Sales , Transaction ,ProductsAndServi
 
 # Create your forms here.
 
-class Company(forms.Form):
+class Company(forms.Form):#modelForm
     class Meta():
-        model = Business
+        model = Company
         fields = ('companyName','companyEmail','companyPhoneNumber','is_client')
  
 # class Users(forms.Form):
@@ -24,7 +24,7 @@ class Company(forms.Form):
 #     companyID = forms.ForeignKey(Company, on_delete=forms.CASCADE)
 
 
-class Business(forms.Form):
+class Business(forms.Form): ####
     class Meta():
         model = Business
         fields = ('businessID','businessName','organisationType','businessType','currency')
@@ -40,7 +40,7 @@ class Business(forms.Form):
 #     def __str__(self):
 #         return str(self.userID)
 
-class ProductsAndServicesForm(forms.Form):
+class ProductsAndServicesForm(forms.ModelForm):
     class Meta():
         model = ProductsAndServices
         fields = ('itemID','psName','isProduct','itemDescription','rate')
@@ -53,7 +53,7 @@ class InvoiceForm(forms.ModelForm): # add fields
    
 
 
-class PurchasesForm(forms.Form):
+class PurchasesForm(forms.ModelForm):
 
     class Meta():
         model = Purchases
@@ -61,7 +61,7 @@ class PurchasesForm(forms.Form):
    
 
 
-class TransactionForm(forms.Form):
+class TransactionForm(forms.ModelForm):
 
     class Meta():
         model = Transaction

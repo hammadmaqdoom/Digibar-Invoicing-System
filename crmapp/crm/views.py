@@ -62,7 +62,7 @@ def invoices(request):
     else:
         form =InvoiceForm()
 
-    context = {'form':form, }
+    context = {'form':form }
     
     return render(request, 'invoice.html', context)
 
@@ -84,6 +84,10 @@ def purchases(request):
             obj.businessID = form.cleaned_data['businessID']
             obj.itemID = form.cleaned_data['itemID']
             obj.status = form.cleaned_data['status']  # does nothing, just trigger the validation
+     
+            obj.save()
+            return HttpResponseRedirect('purchases')
+    
     else:
         form = PurchasesForm()
     
@@ -95,16 +99,20 @@ def productandservice(request):
         form =  ProductsAndServicesForm(request.POST)
         if form.is_valid():
             obj = ProductsAndServices() #gets new object
-            obj.itemID = form.cleaned_data['itemID']
+            #obj.itemID = form.cleaned_data['itemID']
             obj.psName = form.cleaned_data['psName']
             obj.isProduct = form.cleaned_data['isProduct']
-            obj.itemDescription = form.cleaned_data['date']
+            obj.itemDescription = form.cleaned_data['itemDescription']
             obj.rate = form.cleaned_data['rate']
-            
+            ##
+            obj.save()
+            return HttpResponseRedirect('productandservice')
     else:
         form = ProductsAndServicesForm()
+
+    context = {'form':form }
     
-    return render(request, 'productandservice.html', {'form': form})
+    return render(request, 'productandservice.html', context)
 
 
 @login_required
@@ -118,6 +126,10 @@ def transaction(request):
             obj.date = form.cleaned_data['date']
             obj.debit = form.cleaned_data['debit']
             obj.credit = form.cleaned_data['credit']
+            ##
+            obj.save()
+            return HttpResponseRedirect('transaction')
+    
     else:
         form = TransactionForm()
     

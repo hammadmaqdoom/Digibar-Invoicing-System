@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static './img/favicon.png' %}">
   <title>
-    Transaction • Digibar
+    Invoice • Digibar
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -107,10 +107,82 @@
     <div class="wrapper">
       <div class="container">
         <div class="content-center brand">
-          <form class="form" method="post" novalidate>
+          <form class="form" method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_ul }}
-            <button type="submit">Submit</button>
+            {% comment %} {{ form.as_ul }}
+            <button type="submit">Submit</button> {% endcomment %}
+            {{ form.non_field_errors }}
+            
+            <!-- <div class="row">
+            <div class="form-group">
+                {{ form.transactionID.errors }}
+                </div>
+                <label for="{{ form.transactionID.id_for_label }}">Transaction ID:</label>
+                {{ form.transactionID }}
+            </div>
+            </div> -->
+          <!-- </div>
+          <div class="row">
+          <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+              {{ form.transactionID.errors }}
+              </div>
+              <label for="{{ form.transactionID.id_for_label }}">Transaction ID:</label>
+              {{ form.transactionID }}
+          </div> -->
+            </div>
+            <div class="row">
+            <div class="form-group">
+                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.billID.errors }}
+                </div>
+                <label for="{{ form.billID.id_for_label }}">Bill ID:</label>
+                {{ form.billID }}
+            </div>
+          </div>
+          <div class="row">
+          <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+              {{ form.salesID.errors }}
+              </div>
+              <label for="{{ form.salesID.id_for_label }}">Sales ID:</label>
+              {{ form.salesID }}
+          </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.date.errors }}
+                </div>
+                <label for="{{ form.date.id_for_label }}">Date:</label>
+                {{ form.date }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.debit.errors }}
+                </div>
+                <label for="{{ form.debit.id_for_label }}">Debit Amount</label>
+                {{ form.debit }}
+            </div>
+             </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.credit.errors }}
+                </div>
+                <label for="{{ form.credit.id_for_label }}">Credit Amount</label>
+                {{ form.credit }}
+            </div>
+            </div>
+            
+             {% comment %} <div class="card-footer"> {% endcomment %}
+
+                      <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit"/>
+                {% comment %} </div> {% endcomment %}
+            
+            
             </form>
           
         </div>
