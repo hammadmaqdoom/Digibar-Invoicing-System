@@ -1,6 +1,6 @@
 # from typing_extensions import Required
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
@@ -48,15 +48,22 @@ def quotations(request):
 
 @login_required
 def invoices(request):                                        
-    # if request.method == 'POST':
-    #     form = InvoiceForm(request.POST)
-    #     if form.is_valid():
-    #         pass  # does nothing, just trigger the validation
-    # else:
-    #     form =InvoiceForm()
+    if request.method == 'POST':
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+            obj = Sales() #gets new object
+            obj.companyID = form.cleaned_data['companyID']
+            obj.businessID = form.cleaned_data['businessID']
+            obj.itemID = form.cleaned_data['itemID']
+            obj.status = form.cleaned_data['status']
+            #finally save the object in db
+            obj.save()
+            return HttpResponseRedirect('invoices')
 
-    form = InvoiceForm(request.POST)
-    form.save
+            # companyID    businessID    itemID status
+    else:
+        form =InvoiceForm()
 
     context = {'form':form, }
     
