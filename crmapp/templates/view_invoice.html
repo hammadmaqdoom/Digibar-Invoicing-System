@@ -96,12 +96,12 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+       <br /><br /> {% comment %}<br /><br /><br /><br /><br /><br /><br /><br /> {% endcomment %}
       <div class="container">
-        {% comment %} <div class="content-center brand">
-          <h1 class="h3-seo">Hello username!</h1>
-          <h3>Create your business or access your existing business!</h3>
-        </div> {% endcomment %}
+        <div class="content-center brand">
+          <h1 class="h3-seo">Sales and Quotes</h1>
+          <h3></h3>
+        </div> 
       </div>
     
     <div class="wrapper">
@@ -111,9 +111,9 @@
     <thead>
         <tr>
             <th class="text-center">#</th>
-            <th>Name</th>
-            <th>Job Position</th>
-            <th>Since</th>
+            <th>Company</th>
+            <th>Business</th>
+            <th>Status</th>
             <th class="text-right">Salary</th>
             <th class="text-right">Actions</th>
         </tr>
@@ -121,11 +121,11 @@
     <tbody>
     {% for data in dataset %}
         <tr>
-            <td class="text-center">1</td>
-            <td>{{ data.title }}</td>
-            <td>{{ data.title }}</td>
-            <td>{{ data.title }}</td>
-            <td class="text-right">{{ data.title }}</td>
+            <td class="text-center">{{ data.salesID }}</td>
+            <td>{{ data.salesID }}</td>
+            <td>{{ data.companyID }}</td>
+            <td>{{ data.businessID }}</td>
+            <td class="text-right">{{ data.status }}</td>
             <td class="td-actions text-right">
                 <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                     <i class="tim-icons icon-settings-gear-63"></i>
