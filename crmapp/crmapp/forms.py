@@ -50,6 +50,11 @@ class InvoiceForm(forms.ModelForm): # add fields
     class Meta():
         model = Sales
         fields = ('salesID','companyID','businessID','itemID','status')
+    
+    class Media:
+        css = {
+            'all': ('blk-design-system.css',),
+        }
    
 
 

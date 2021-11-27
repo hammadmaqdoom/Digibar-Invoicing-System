@@ -119,133 +119,30 @@
                       <table class="table tablesorter " id="plain-table">
                         <thead class=" text-primary">
                           <tr>
-                            <th class="header">
-                              Bill ID
-                            </th>
-                            <th class="header">
-                              Sales ID
-                            </th>
-                            <th class="header">
-                              Date
-                            </th>
-                            <th class="header">
-                              Debit 
-                            </th>
-                            <th class="header">
-                              Credit
-                            </th>
+                            <th class="header">Bill ID</th>
+                            <th class="header">Sales ID</th>
+                            <th class="header">Date</th>
+                            <th class="header">Debit</th>
+                            <th class="header">Credit</th>
                           </tr>
                         </thead>
                         <tbody>
                         {% if Transaction %}
                           {% for category in Transaction %}
                           <tr>
-                            <td>
-                              {{ category.billID }}
-                            </td>
-                            <td>
-                              {{ category.salesID}}
-                            </td>
-                            <td>
-                              {{ category.date }}
-                            </td>
-                            <td>
-                              {{ category.debit }}
-                            </td>
-                            <td>
-                              {{ category.credit }}
-                            </td>
+                            <td>{{ category.billID }}</td>
+                            <td>{{ category.salesID}}</td>
+                            <td>{{ category.date }}</td>
+                            <td>{{ category.debit }}</td>
+                            <td>{{ category.credit }}</td>
                           </tr>
                           {% endfor %}
                             </ul>
                         {% else %}
                         <tr>
-                            <strong>There are no categories present.</strong>
+                            <strong>There are no Transactions present.</strong>
                         </tr>
                         {% endif %}
-                          {% comment %} <tr>
-                            <td>
-                              BTC
-                            </td>
-                            <td>
-                              7.342
-                            </td>
-                            <td>
-                              48,870.75 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              ETH
-                            </td>
-                            <td>
-                              30.737
-                            </td>
-                            <td>
-                              64,53.30 USD
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              XRP
-                            </td>
-                            <td>
-                              19.242
-                            </td>
-                            <td>
-                              18,354.96 USD
-                            </td>
-                          </tr> {% endcomment %}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="linkb">
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Pay to</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="e.g. 1Nasd92348hU984353hfid">
-                          <span class="form-text">Please enter a valid address.</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <label class="col-sm-3 col-form-label">Amount</label>
-                      <div class="col-sm-9">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="1.587">
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-simple btn-primary btn-icon btn-round float-right"><i class="tim-icons icon-send"></i></button>
-                  </div>
-                  <div class="tab-pane" id="linkc">
-                    <div class="table-responsive">
-                      <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              Latest Crypto News
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              The Daily: Nexo to Pay on Stable...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Venezuela Begins Public of Nation...
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              PR: BitCanna – Dutch Blockchain...
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -287,37 +184,23 @@
                       <table class="table tablesorter " id="plain-table">
                         <thead class=" text-primary">
                           <tr>
-                            <th class="header">
-                              Invoice No.
-                            </th>
-                            <th class="header">
-                              Company Name
-                            </th>
-                            <th class="header">
-                              Items
-                            </th>
+                            <th class="header">Invoice No.</th>
+                            <th class="header">Company Name</th>
+                            <th class="header">Items</th>
                           </tr>
                         </thead>
                         <tbody>
                           {% if Sales %}
-                          {% for category in Sales %}
+                          {% for sale in Sales %}
                           <tr>
-                            <td>
-                              {{ category.salesID }}
-                            </td>
-                            <td>
-                              {{ category.companyID }}
-                            </td>
-                            <td>
-                              {{ category.itemID }}
-                            </td>
+                            <td>{{ sale.salesID }}</td>
+                            <td>{{ sale.companyID }}</td>
+                            <td>{{ sale.itemID }}</td>
                           </tr>
                           {% endfor %}
                             </ul>
                         {% else %}
-                        <tr>
-                            <strong>There are no categories present.</strong>
-                        </tr>
+                        <tr><strong>There are no Sales present.</strong></tr>
                         {% endif %}
                         </tbody>
                       </table>
@@ -325,7 +208,8 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btn-primary btn-simple">Record Sales</button>
+                <a href='{% url 'view_invoices' %}' class="btn btn-primary btn-simple">List All</a>
+                <a href='{% url 'invoices' %}' class="btn btn-primary btn-simple">Record Sales</a>
               </div>
             </div>
           </div>
@@ -385,7 +269,8 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btn-success btn-simple">Record Purchase</button>
+                <a href='{% url 'view_invoices' %}' class="btn btn-primary btn-simple">List All</a>
+                <a href='{% url 'purchases' %}' class="btn btn-success btn-simple">Record Purchase</a>
               </div>
             </div>
           </div>
@@ -407,36 +292,24 @@
                       <table class="table tablesorter " id="plain-table">
                         <thead class=" text-primary">
                           <tr>
-                            <th class="header">
-                              Item no
-                            </th>
-                            <th class="header">
-                              Name
-                            </th>
-                            <th class="header">
-                              Price
-                            </th>
+                            <th class="header">Item no</th>
+                            <th class="header">Name</th>
+                            <th class="header">Price</th>
                           </tr>
                         </thead>
                         <tbody>
                           {% if ProductandServices %}
-                          {% for category in ProductandServices %}
+                          {% for ps in ProductandServices %}
                           <tr>
-                            <td>
-                              {{ category.itemID }}
-                            </td>
-                            <td>
-                              {{ category.psName }}
-                            </td>
-                            <td>
-                              {{ category.rate }}
-                            </td>
+                            <td>{{ ps.itemID }}</td>
+                            <td>{{ ps.psName }}</td>
+                            <td>{{ ps.rate }}</td>
                           </tr>
                           {% endfor %}
                             </ul>
                         {% else %}
                         <tr>
-                            <strong>There are no categories present.</strong>
+                            <strong>There are no prodcuts or services present.</strong>
                         </tr>
                         {% endif %}
                         </tbody>
@@ -444,7 +317,8 @@
                     </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btn-info btn-simple">View More </button>
+              <a href='{% url 'view_invoices' %}' class="btn btn-primary btn-simple">List All</a>
+                <a href='{% url 'purchases' %}' class="btn btn-success btn-simple">Add Product/Service</a>
               </div>
             </div>
           </div>

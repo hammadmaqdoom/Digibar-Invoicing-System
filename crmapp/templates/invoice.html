@@ -29,7 +29,7 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
+<body class="login-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -96,7 +96,7 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         {% comment %} <div class="content-center brand">
           <h1 class="h3-seo">Hello username!</h1>
@@ -109,61 +109,58 @@
         <div class="content-center brand">
           <form class="form" method="POST" novalidate>
             {% csrf_token %}
-            {% comment %} {{ form.as_ul }}
-            <button type="submit">Submit</button> {% endcomment %}
-            {{ form.non_field_errors }}
+            {% if form.non_field_errors %}
+              <div class='alert alert-danger' style='list-style-type: none;'>
+              {{ form.non_field_errors }}
+              </div>
+            {% endif %}
             <div class="row">
             <div class="form-group">
-                {{ form.salesID.errors }}
-                </div>
-                <label for="{{ form.salesID.id_for_label }}">Sales ID:</label>
-                {{ form.salesID }}
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+            {% if form.status.errors %}
+                <div class='alert alert-danger' style='list-style-type: none;'>
                 {{ form.companyID.errors }}
                 </div>
-                <label for="{{ form.companyID.id_for_label }}">Company:</label>
-                {{ form.companyID }}
+                {% endif %}
+                <label for="{{ form.companyID.id_for_label }}">Company</label>
+                {{ form.companyID|add_class:'form-control' }}
             </div>
             </div>
             <div class="row">
             <div class="form-group">
+              {% if form.status.errors %}
               <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
                 {{ form.businessID.errors }}
                 </div>
-                <label for="{{ form.businessID.id_for_label }}">Business:</label>
-                {{ form.businessID }}
+                {% endif %}
+                <label for="{{ form.businessID.id_for_label }}">Business</label>
+                {{ form.businessID|add_class:'form-control' }}
             </div>
             </div>
             <div class="row">
-            <div class="form-group">
-            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.itemID.errors }}
+              <div class="form-group">
+                {% if form.status.errors %}
+                <div class='alert alert-danger' style='list-style-type: none;'>
+                  {{ form.itemID.errors }}
                 </div>
+                {% endif %}
                 <label for="{{ form.itemID.id_for_label }}">Items</label>
-                {{ form.itemID }}
-            </div>
+                {{ form.itemID|add_class:'form-control' }}
+              </div>
             </div>
             <div class="row">
-            <div class="form-group">
-            <div class='alert alert-danger alert-with-icon'>
-                {{ form.status.errors }}
+              <div class="form-group">
+                {% if form.status.errors %}
+                <div class='alert alert-danger'>
+                  {{ form.status.errors }}
                 </div>
+                {% endif %}
                 <label for="{{ form.status.id_for_label }}">Quote Approved?</label>
-                {{ form.status }}
+                {{ form.status|add_class:'form-control' }}
+              </div>
             </div>
-            </div>
             
-             {% comment %} <div class="card-footer"> {% endcomment %}
-
-                      <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit"/>
-                {% comment %} </div> {% endcomment %}
-            
-            
-            </form>
+            <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit"/>
+          </form>
           
         </div>
       </div>
