@@ -29,7 +29,7 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
+<body class="profile-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -107,30 +107,37 @@
     <div class="wrapper">
       <div class="container">
         <div class="content-center brand">
-          <table class="table tablesorter " id="plain-table">
-                        <thead class=" text-primary">
-                          <tr>
-                            <th class="header">
-                              Company Name
-                            </th>
-                            <th class="header">
-                              Business Name
-                            </th>
-                            <th class="header">
-                              Qote Approved
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {% for data in dataset %}
-                          <tr>
-                            <td>{{ data.companyID }}</td>
-                            <td>{{ data.businessID }}</td>
-                            <td>{{ data.status }}</td>
-                          </tr>
-                        {% endfor %}
-                        </tbody>
-                      </table>
+          <table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th>Name</th>
+            <th>Job Position</th>
+            <th>Since</th>
+            <th class="text-right">Salary</th>
+            <th class="text-right">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for data in dataset %}
+        <tr>
+            <td class="text-center">1</td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.title }}</td>
+            <td class="text-right">{{ data.title }}</td>
+            <td class="td-actions text-right">
+                <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                    <i class="tim-icons icon-settings-gear-63"></i>
+                </button>
+                <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                    <i class="tim-icons icon-simple-remove"></i>
+                </button>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
           
         </div>
       </div>
