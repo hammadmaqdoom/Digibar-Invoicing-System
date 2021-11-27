@@ -114,10 +114,10 @@
             {{ form.non_field_errors }}
             <div class="row">
             <div class="form-group">
-                {{ form.itemDescription.errors }}
+                {{ form.itemID.errors }}
                 </div>
-                <label for="{{ form.itemDescription.id_for_label }}">Item ID:</label>
-                {{ form.itemDescription }}
+                <label for="{{ form.itemID.id_for_label }}">Sales ID:</label>
+                {{ form.itemID }}
             </div>
             </div>
             <div class="row">
@@ -128,28 +128,28 @@
                 <label for="{{ form.psName.id_for_label }}">Product or Service Name:</label>
                 {{ form.psName }}
             </div>
+          </div>
+          <div class="row">
+          <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+              {{ form.isProduct.errors }}
+              </div>
+              <label for="{{ form.isProduct.id_for_label }}">Is Product ?:</label>
+              {{ form.isProduct }}
+          </div>
             </div>
             <div class="row">
             <div class="form-group">
               <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.isProduct.errors }}
-                </div>
-                <label for="{{ form.isProduct.id_for_label }}">Is Product ?:</label>
-                {{ form.isProduct }}
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
                 {{ form.itemDescription.errors }}
                 </div>
-                <label for="{{ form.itemDescription.id_for_label }}">Item Description</label>
+                <label for="{{ form.itemDescription.id_for_label }}">Item Description:</label>
                 {{ form.itemDescription }}
             </div>
             </div>
             <div class="row">
             <div class="form-group">
-            <div class='alert alert-danger alert-with-icon'>
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
                 {{ form.rate.errors }}
                 </div>
                 <label for="{{ form.rate.id_for_label }}">Price</label>
