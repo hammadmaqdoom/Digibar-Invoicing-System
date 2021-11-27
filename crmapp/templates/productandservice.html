@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static './img/favicon.png' %}">
   <title>
-    Product and Services • Digibar
+    Invoice • Digibar
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -107,10 +107,62 @@
     <div class="wrapper">
       <div class="container">
         <div class="content-center brand">
-          <form class="form" method="post" novalidate>
+          <form class="form" method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_ul }}
-            <button type="submit">Submit</button>
+            {% comment %} {{ form.as_ul }}
+            <button type="submit">Submit</button> {% endcomment %}
+            {{ form.non_field_errors }}
+            <div class="row">
+            <div class="form-group">
+                {{ form.itemDescription.errors }}
+                </div>
+                <label for="{{ form.itemDescription.id_for_label }}">Item ID:</label>
+                {{ form.itemDescription }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.psName.errors }}
+                </div>
+                <label for="{{ form.psName.id_for_label }}">Product or Service Name:</label>
+                {{ form.psName }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.isProduct.errors }}
+                </div>
+                <label for="{{ form.isProduct.id_for_label }}">Is Product ?:</label>
+                {{ form.isProduct }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                {{ form.itemDescription.errors }}
+                </div>
+                <label for="{{ form.itemDescription.id_for_label }}">Item Description</label>
+                {{ form.itemDescription }}
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-group">
+            <div class='alert alert-danger alert-with-icon'>
+                {{ form.rate.errors }}
+                </div>
+                <label for="{{ form.rate.id_for_label }}">Price</label>
+                {{ form.rate }}
+            </div>
+            </div>
+            
+             {% comment %} <div class="card-footer"> {% endcomment %}
+
+                      <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit"/>
+                {% comment %} </div> {% endcomment %}
+            
+            
             </form>
           
         </div>

@@ -1,5 +1,5 @@
 from django import forms
-from crm.models import Purchases, Sales
+from crm.models import Company ,Purchases, Sales , Transaction ,ProductsAndServices, Business
 # from django.contrib.auth.forms import UserCreationForm
 
 # class NameForm(forms.Form):
@@ -8,11 +8,10 @@ from crm.models import Purchases, Sales
 # Create your forms here.
 
 class Company(forms.Form):
-    companyName = forms.CharField(label='Company', max_length=64)
-    companyEmail = forms.EmailField(label='Email')
-    companyPhoneNumber = forms.IntegerField(label='Number')
-    is_client = forms.BooleanField()
-
+    class Meta():
+        model = Business
+        fields = ('companyName','companyEmail','companyPhoneNumber','is_client')
+ 
 # class Users(forms.Form):
 #     userName = forms.CharField(max_length=100)
 #     password = forms.CharField(max_length=64)
@@ -26,24 +25,9 @@ class Company(forms.Form):
 
 
 class Business(forms.Form):
-    businessName = forms.CharField(label='Business Name', max_length=64)
-    ORGANISATION_TYPE = (
-        ('SP', 'SoleProprietor'),
-        ('P', 'Partnership'),
-        ('PL', 'PrivateLimited'),
-        ('PBL', 'PublicLimited')
-    )
-    organisationType = forms.MultipleChoiceField(choices=ORGANISATION_TYPE)
-    businessType = forms.MultipleChoiceField(label='Business Type')
-    CUREN = (
-        ('PKR', 'Pakistani Ruppee'),
-        ('USD', 'United States Dollar'),
-        ('EUR', 'Euro'),
-        ('AED', 'Dirham'),
-        ('CAD', 'Canadian Dollar'),
-        ('AUD', 'Australian Dollar')
-    )
-    currency = forms.MultipleChoiceField(choices=CUREN)
+    class Meta():
+        model = Business
+        fields = ('businessID','businessName','organisationType','businessType','currency')
 
 # class CompanyUsers(forms.Form):
 #     businessID = forms.ForeignKey(Business, on_delete=forms.CASCADE)
@@ -57,48 +41,31 @@ class Business(forms.Form):
 #         return str(self.userID)
 
 class ProductsAndServicesForm(forms.Form):
-    
-    psName = forms.CharField(label='Name')
-    isProduct = forms.BooleanField()
-    itemDescription = forms.CharField(label='Item description')
-    rate = forms.IntegerField(label='Rate')
+    class Meta():
+        model = ProductsAndServices
+        fields = ('itemID','psName','isProduct','itemDescription','rate')
     
 
 class InvoiceForm(forms.ModelForm): # add fields
     class Meta():
-         model = Sales
-         fields = ('salesID','companyID','businessID','itemID','status')
-    # salesID = forms.IntegerField()
-    # companyID = forms.IntegerField()
-    # businessID = forms.IntegerField()
-    # itemID = forms.IntegerField()
-    # STAT = (
-    #     ('A', 'Approved'),
-    #     ('NA', 'NotApproved')
-    # )
-    # status = forms.MultipleChoiceField(choices=STAT)
+        model = Sales
+        fields = ('salesID','companyID','businessID','itemID','status')
+   
 
 
 class PurchasesForm(forms.Form):
-    billID = forms.IntegerField()
-    companyID = forms.IntegerField()
-    businessID = forms.IntegerField()
-    itemID = forms.IntegerField()
-    STAT = (
-        ('A', 'Approved'),
-        ('NA', 'NotApproved')
-    )
-    status = forms.MultipleChoiceField(choices=STAT)
+
+    class Meta():
+        model = Purchases
+        fields = ('billID','companyID','businessID','itemID','status')
+   
 
 
 class TransactionForm(forms.Form):
-    transactionID = forms.IntegerField()
-    billID = forms.IntegerField()
-    salesID = forms.IntegerField()
-    date = forms.DateTimeField()
-    # date = forms.DateTimeField()
-    debit = forms.IntegerField(label='Debit Amount')
-    credit = forms.IntegerField(label='Credit Amount')
+
+    class Meta():
+        model = Transaction
+        fields = ('transactionID','billID','salesID','date','debit','credit')
 
 
 
