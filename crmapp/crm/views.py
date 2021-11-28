@@ -66,6 +66,27 @@ def invoices(request):
     
     return render(request, 'invoice.html', context)
 
+def update_invoices(request, salesID):
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(Sales, salesID = salesID)
+ 
+    # pass the object as instance in form
+    form = InvoiceForm(request.POST or None, instance = obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/update_sales/"+salesID)
+
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "update_invoices.html", context)
+
+
 @login_required
 def view_invoices(request):                                        
     context ={}
@@ -75,11 +96,10 @@ def view_invoices(request):
     return render(request, 'view_invoice.html', context)
 
 @login_required
-def delete_view(request):
+def delete_invoices(request,salesID):
     context ={}
     # fetch the object related to passed id
-    obj = get_object_or_404(Sales, id = id)
- 
+    obj = get_object_or_404(Sales, salesID = salesID)
  
     if request.method =="POST":
         # delete object
