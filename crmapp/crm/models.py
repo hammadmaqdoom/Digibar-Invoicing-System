@@ -83,6 +83,13 @@ class Sales(models.Model):
     def __str__(self):
         return str(self.salesID)
 
+class Item_sale(models.Model):
+    itemsaleID = models.AutoField(primary_key=True)
+    salesID=models.ForeignKey(Sales,on_delete=models.CASCADE)
+    itemID = models.ForeignKey(ProductsAndServices, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.salesID)
+
 class Purchases(models.Model):
     billID = models.AutoField(primary_key=True)
     companyID = models.ForeignKey(Company, on_delete=models.CASCADE)
