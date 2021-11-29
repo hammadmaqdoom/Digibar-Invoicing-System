@@ -69,7 +69,6 @@ class ProductsAndServices(models.Model):
     def __str__(self):
         return self.psName
     
-
 class Sales(models.Model):
     salesID = models.AutoField(primary_key=True)
     companyID = models.ForeignKey(Company, on_delete=models.CASCADE)
