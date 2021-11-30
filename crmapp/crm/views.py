@@ -92,11 +92,13 @@ def invoices(request):
     context = {'form':form }
     return render(request, 'invoice.html', context)
 
-def update_invoices(request, salesID):
+def update_invoices(request):
     context = {}
+    
+    id = request.GET.get('id','')
 
     # fetch the object related to passed id
-    obj = get_object_or_404(Sales, salesID=salesID)
+    obj = get_object_or_404(Sales, salesID=id)
 
     # pass the object as instance in form
     form = InvoiceForm(request.POST or None, instance=obj)
@@ -105,7 +107,7 @@ def update_invoices(request, salesID):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/update_sales/"+salesID)
+        return HttpResponseRedirect("/update_sales/"+id)
 
     # add form dictionary to context
     context["form"] = form
@@ -122,10 +124,11 @@ def view_invoices(request):
     return render(request, 'view_invoice.html', context)
 
 @login_required
-def delete_invoices(request, salesID):
+def delete_invoices(request):
     context = {}
     # fetch the object related to passed id
-    obj = get_object_or_404(Sales, salesID=salesID)
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Sales, salesID=id)
     if request.method == "POST":
         # delete object
         obj.delete()
@@ -148,7 +151,8 @@ def productandservice(request):
             # obj.rate = form.cleaned_data['rate']
             # obj.save()
             form.save()
-            return HttpResponseRedirect('productandservice')
+            # return HttpResponseRedirect('productandservice')
+            return redirect(reverse("productandservice"))
     else:
         form = ProductsAndServicesForm()
 

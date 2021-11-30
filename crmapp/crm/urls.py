@@ -17,8 +17,8 @@ urlpatterns = [
     path("land", views.landinglogin, name='land'),
     path("transaction", views.transaction, name='transaction'),
     path("view_invoices",views.view_invoices, name='view_invoices'),
-    path('delete_sales/<salesID>', views.delete_invoices, name='delete_invoices' ),
-    path('update_sales/<salesID>', views.update_invoices, name='update_invoices' ),
+    path('delete_sales/', views.delete_invoices, name='delete_invoices' ),
+    path('update_sales/', views.update_invoices, name='update_invoices' ),
 
 
 ]

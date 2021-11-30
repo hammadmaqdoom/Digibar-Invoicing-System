@@ -29,7 +29,7 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="profile-page">
+<body class="landing-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -96,7 +96,7 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-       <br /><br /> {% comment %}<br /><br /><br /><br /><br /><br /><br /><br /> {% endcomment %}
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         <div class="content-center brand">
           <h1 class="h3-seo">Sales and Quotes</h1>
@@ -104,44 +104,48 @@
         </div> 
       </div>
     
-    <div class="wrapper">
-      <div class="container">
+    {% comment %} <div class="wrapper">{% endcomment %}
+      <div class="row"> 
         <div class="content-center brand">
+           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           <table class="table">
-        <thead>
-        <tr>
-            <th class="text-center">#</th>
-            <th>Company</th>
-            <th>Business</th>
-            <th>Status</th>
-            <th class="text-right">Status</th>
-            <th class="text-right">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for data in dataset %}
-            <tr>
-                <td class="text-center">{{ data.salesID }}</td>
-                <td>{{ data.salesID }}</td>
-                <td>{{ data.companyID }}</td>
-                <td>{{ data.businessID }}</td>
-                <td class="text-right">{{ data.status }}</td>
-                <td class="td-actions text-right">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th>Company</th>
+                <th>Business</th>
+                <th>Status</th>
+                <th class="text-right">Status</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for data in dataset %}
+              <tr>
+                  <td class="text-center">{{ data.salesID }}</td>
+                  <td>{{ data.salesID }}</td>
+                  <td>{{ data.companyID }}</td>
+                  <td>{{ data.businessID }}</td>
+                  <td class="text-right">{{ data.status }}</td>
+                  <td class="td-actions text-right">
+                  <a href="update_sales/?id={{data.salesID}}">
                     <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                        <i class="tim-icons icon-settings-gear-63"></i>
+                      <i class="tim-icons icon-settings-gear-63"></i>
                     </button>
+                  </a>
+                  <a href='delete_sales/?id={{data.salesID}}'>
                     <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                         <i class="tim-icons icon-simple-remove"></i>
                     </button>
-                </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-    </table>
-          
+                  </a>
+                  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
-  </div> 
+    {% comment %}</div>  {% endcomment %}
 
     </div>
 
