@@ -51,10 +51,12 @@ def invoices(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         if form.is_valid():
+            Items = ProductsAndServices()
             obj = Sales() #gets new object
             obj.companyID = form.cleaned_data['companyID']
             obj.businessID = form.cleaned_data['businessID']
-            obj.itemID = form.cleaned_data['itemID']
+            obj.items  = form.cleaned_data['items']
+            obj.items = Items.objects.filter(itemID=itemID)
             obj.status = form.cleaned_data['status']
             #finally save the object in db
             obj.save()

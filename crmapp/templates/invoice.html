@@ -140,11 +140,11 @@
               <div class="form-group">
                 {% if form.status.errors %}
                 <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.itemID.errors }}
+                  {{ form.items.errors }}
                 </div>
                 {% endif %}
-                <label for="{{ form.itemID.id_for_label }}">Items</label>
-                {{ form.itemID|add_class:'form-control' }}
+                <label for="{{ form.items.id_for_label }}">Items</label>
+                {{ form.items|add_class:'form-control' }}
               </div>
             </div>
             <div class="row">

@@ -1,5 +1,5 @@
 from django import forms
-from crm.models import Company ,Purchases, Sales , Transaction ,ProductsAndServices, Business ,Item_sale
+from crm.models import Company ,Purchases, Sales , Transaction ,ProductsAndServices, Business
 # from django.contrib.auth.forms import UserCreationForm
 
 # class NameForm(forms.Form):
@@ -49,12 +49,12 @@ class ProductsAndServicesForm(forms.ModelForm):
 class InvoiceForm(forms.ModelForm): # add fields
     class Meta():
         model = Sales
-        fields = ('salesID','companyID','businessID','itemID','status')
+        fields = ('salesID','companyID','businessID','items','status')
 
-class ItemSaleForm(forms.ModelForm): # add fields
-    class Meta():
-        model = Item_sale
-        fields = ('itemsaleID','salesID','itemID')
+# class ItemSaleForm(forms.ModelForm): # add fields
+#     class Meta():
+#         model = Item_sale
+#         fields = ('itemsaleID','salesID','itemID')
     
     
    
