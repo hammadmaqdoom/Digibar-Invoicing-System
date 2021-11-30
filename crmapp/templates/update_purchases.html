@@ -29,7 +29,7 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
+<body class="login-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -78,7 +78,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'logout' %}">
-              <i class="tim-icons icon-cloud-download-93"></i>Logout
+              <i class="tim-icons icon-cloud-download-93"></i> Logout
             </a>
           </li>
         </ul>
@@ -96,56 +96,72 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
-        <div class="content-center brand">
-          <h1 class="h3-seo">Sales and Quotes</h1>
-          <h3></h3>
-        </div> 
+        {% comment %} <div class="content-center brand">
+          <h1 class="h3-seo">Hello username!</h1>
+          <h3>Create your business or access your existing business!</h3>
+        </div> {% endcomment %}
       </div>
     
-    {% comment %} <div class="wrapper">{% endcomment %}
-      <div class="row"> 
+    <div class="wrapper">
+      <div class="container">
         <div class="content-center brand">
-           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center">#</th>
-                <th>Company</th>
-                <th>Business</th>
-                <!-- <th>Status</th> -->
-                <th class="text-right">Status</th>
-                <th class="text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for data in dataset %}
-              <tr>
-                  <td class="text-center">{{ data.salesID }}</td>
-                  <!-- <td>{{ data.salesID }}</td> -->
-                  <td>{{ data.companyID }}</td>
-                  <td>{{ data.businessID }}</td>
-                  <td class="text-right">{{ data.status }}</td>
-                  <td class="td-actions text-right">
-                  <a href="update_sales/?id={{data.salesID}}">
-                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                      <i class="tim-icons icon-settings-gear-63"></i>
-                    </button>
-                  </a>
-                  <a href='delete_sales/?id={{data.salesID}}'>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                        <i class="tim-icons icon-simple-remove"></i>
-                    </button>
-                  </a>
-                  </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+          <form class="form" method="POST" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class='alert alert-danger' style='list-style-type: none;'>
+              {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+            <div class="row">
+              <div class="form-group">
+                {% if form.status.errors %}
+                <div class='alert alert-danger' style='list-style-type: none;'>
+                  {{ form.companyID.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.companyID.id_for_label }}">Company</label>
+                <!-- {{ form.companyID|add_class:'form-control' }} -->
+                {% render_field form.companyID class="form-control" %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                {% if form.status.errors %}
+                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
+                  {{ form.businessID.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.businessID.id_for_label }}">Business</label>
+                <!-- {{ form.businessID|add_class:'form-control' }} -->
+                {% render_field form.businessID class="form-control" %}
+              </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.items.errors }}
+                  </div>
+                  {% endif %}
+                  <!-- <div class="form-check">
+                    <label class="form-check-label"> -->
+                      <label for="{{ form.items.id_for_label }}">Items</label>
+                       {% render_field form.items class="form-check-input" type="checkbox" %}
+                        <!-- <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label> -->
+                </div>
+              </div>
+            
+            <input class="btn btn-info btn-round btn-lg" type="submit" value="Update" />
+          </form>
+          
         </div>
       </div>
-    {% comment %}</div>  {% endcomment %}
+  </div> 
 
     </div>
 

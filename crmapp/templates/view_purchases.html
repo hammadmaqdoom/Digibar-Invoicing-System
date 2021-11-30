@@ -99,7 +99,7 @@
        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         <div class="content-center brand">
-          <h1 class="h3-seo">Sales and Quotes</h1>
+          <h1 class="h3-seo">Purchases</h1>
           <h3></h3>
         </div> 
       </div>
@@ -114,26 +114,26 @@
                 <th class="text-center">#</th>
                 <th>Company</th>
                 <th>Business</th>
-                <!-- <th>Status</th> -->
-                <th class="text-right">Status</th>
+                <!-- <th>Price</th> -->
+                <!-- <th class="text-right">Price</th> -->
                 <th class="text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
             {% for data in dataset %}
               <tr>
-                  <td class="text-center">{{ data.salesID }}</td>
-                  <!-- <td>{{ data.salesID }}</td> -->
+                  <td class="text-center">{{ data.billID }}</td>
+                  <!-- <td>{{ data.billID }}</td> -->
                   <td>{{ data.companyID }}</td>
                   <td>{{ data.businessID }}</td>
-                  <td class="text-right">{{ data.status }}</td>
+                  <!-- <td class="text-right">{{ data.status }}</td> -->
                   <td class="td-actions text-right">
-                  <a href="update_sales/?id={{data.salesID}}">
+                  <a href="update_purchases/?id={{data.billID}}">
                     <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                       <i class="tim-icons icon-settings-gear-63"></i>
                     </button>
                   </a>
-                  <a href='delete_sales/?id={{data.salesID}}'>
+                  <a href='delete_purchases/?id={{data.billID}}'>
                     <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                         <i class="tim-icons icon-simple-remove"></i>
                     </button>

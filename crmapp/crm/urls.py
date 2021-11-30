@@ -19,6 +19,9 @@ urlpatterns = [
     path("view_invoices",views.view_invoices, name='view_invoices'),
     path('delete_sales/', views.delete_invoices, name='delete_invoices' ),
     path('update_sales/', views.update_invoices, name='update_invoices' ),
+    path("view_purchases",views.view_purchases, name='view_purchases'),
+    path('delete_purchases/', views.delete_purchases, name='delete_purchases' ),
+    path('update_purchases/', views.update_purchases, name='update_purchases' ),
 
 
 ]

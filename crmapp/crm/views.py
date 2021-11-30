@@ -92,6 +92,7 @@ def invoices(request):
     context = {'form':form }
     return render(request, 'invoice.html', context)
 
+@login_required
 def update_invoices(request):
     context = {}
     
@@ -122,6 +123,53 @@ def view_invoices(request):
     context["dataset"] = Sales.objects.all()
 
     return render(request, 'view_invoice.html', context)
+
+@login_required
+def view_purchases(request):
+    context = {}
+
+    context["dataset"] =Purchases.objects.all()
+
+    return render(request, 'view_purchases.html', context)
+
+@login_required
+def update_purchases(request):
+    context = {}
+    
+    id = request.GET.get('id','')
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Purchases, billID=id)
+
+    # pass the object as instance in form
+    form = PurchasesForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/update_purchases/"+id)
+
+    # add form dictionary to context
+    context["form"] = form
+
+    return render(request, "update_purchases.html", context)
+
+@login_required
+def delete_purchases(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Purchases, billID=id)
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        return HttpResponseRedirect("view_purchases")
+
+
+
 
 @login_required
 def delete_invoices(request):
