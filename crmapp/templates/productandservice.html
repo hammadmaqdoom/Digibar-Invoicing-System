@@ -17,7 +17,7 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -29,15 +29,16 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
+<body class="login-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="#" target="">
-          <span>Dbar•</span> 
+          <span>Dbar•</span>
         </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
           <span class="navbar-toggler-bar bar2"></span>
           <span class="navbar-toggler-bar bar3"></span>
@@ -52,14 +53,15 @@
               </a>
             </div>
             <div class="col-6 collapse-close text-right">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="tim-icons icon-simple-remove"></i>
               </button>
             </div>
           </div>
         </div>
         <ul class="navbar-nav">
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'invoices' %}">Sales</a>
           </li>
           <li class="nav-item">
@@ -87,7 +89,7 @@
   </nav>
   <!-- End Navbar -->
 
-<div class="wrapper">
+  <div class="wrapper">
     <div class="page-header header-filter">
       <div class="squares square1"></div>
       <div class="squares square2"></div>
@@ -96,84 +98,86 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         {% comment %} <div class="content-center brand">
           <h1 class="h3-seo">Hello username!</h1>
           <h3>Create your business or access your existing business!</h3>
         </div> {% endcomment %}
       </div>
-    
-    <div class="wrapper">
-      <div class="container">
-        <div class="content-center brand">
-          <form class="form" method="POST" novalidate>
-            {% csrf_token %}
-            {% comment %} {{ form.as_ul }}
-            <button type="submit">Submit</button> {% endcomment %}
-            {{ form.non_field_errors }}
-            <div class="row">
-            <div class="form-group">
-                {{ form.itemID.errors }}
-                </div>
-                <label for="{{ form.itemID.id_for_label }}">Sales ID:</label>
-                {{ form.itemID }}
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-                <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.psName.errors }}
-                </div>
-                <label for="{{ form.psName.id_for_label }}">Product or Service Name:</label>
-                {{ form.psName }}
-            </div>
-          </div>
-          <div class="row">
-          <div class="form-group">
-            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-              {{ form.isProduct.errors }}
-              </div>
-              <label for="{{ form.isProduct.id_for_label }}">Is Product ?:</label>
-              {{ form.isProduct }}
-          </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.itemDescription.errors }}
-                </div>
-                <label for="{{ form.itemDescription.id_for_label }}">Item Description:</label>
-                {{ form.itemDescription }}
-            </div>
-            </div>
-            <div class="row">
-            <div class="form-group">
-            <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.rate.errors }}
-                </div>
-                <label for="{{ form.rate.id_for_label }}">Price</label>
-                {{ form.rate }}
-            </div>
-            </div>
-            
-             {% comment %} <div class="card-footer"> {% endcomment %}
 
-                      <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit"/>
-                {% comment %} </div> {% endcomment %}
-            
-            
+      <div class="wrapper">
+        <div class="container">
+          <div class="content-center brand">         
+            <form class="form" method="POST" novalidate>
+              {% csrf_token %}
+              {% if form.non_field_errors %}
+              <div class='alert alert-danger' style='list-style-type: none;'>
+                {{ form.non_field_errors }}
+              </div>
+              {% endif %}
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.psName.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.psName.id_for_label }}">Product or Service Name</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.psName class="form-control" %}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                    <div class='alert alert-danger' style='list-style-type: none;'>
+                      {{ form.isProduct.errors }}
+                    </div>
+                    {% endif %}
+                    <label for="{{ form.isProduct.id_for_label }}">Is Product ?:</label>
+                    {{ form.isProduct }}
+                </div>
+                  </div>
+      
+              
+                <div class="row">
+                  <div class="form-group">
+                    {% if form.status.errors %}
+                    <div class='alert alert-danger' style='list-style-type: none;'>
+                      {{ form.itemDescription.errors }}
+                    </div>
+                    {% endif %}
+                    <label for="{{ form.itemDescription.id_for_label }}">Description of Item</label>
+                    <!-- {{ form.companyID|add_class:'form-control' }} -->
+                    {% render_field form.itemDescription class="form-control" %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    {% if form.status.errors %}
+                    <div class='alert alert-danger' style='list-style-type: none;'>
+                      {{ form.rate.errors }}
+                    </div>
+                    {% endif %}
+                    <label for="{{ form.rate.id_for_label }}">Price </label>
+                    <!-- {{ form.companyID|add_class:'form-control' }} -->
+                    {% render_field form.rate class="form-control" %}
+                  </div>
+                </div>
+
+              
+              <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit" />
             </form>
-          
+          </div>
         </div>
       </div>
-  </div> 
 
     </div>
 
 
 
-      
+
 
 
   </div>
