@@ -103,8 +103,8 @@ class Purchases(models.Model):
     #itemID = models.ForeignKey(ProductsAndServices, on_delete=models.CASCADE)
     items = models.ManyToManyField(ProductsAndServices)
     STAT = (
-        ('Approved', 'Approved'),
-        ('Not Approved', 'Not Approved')
+        ('Paid', 'Paid'),
+        ('Unpaid', 'Unpaid')
     )
     status = models.CharField(max_length=64, choices=STAT)
 

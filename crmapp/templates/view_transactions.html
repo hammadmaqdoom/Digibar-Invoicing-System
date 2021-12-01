@@ -29,7 +29,7 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="login-page">
+<body class="landing-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
@@ -78,7 +78,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'logout' %}">
-              <i class="tim-icons icon-cloud-download-93"></i> Logout
+              <i class="tim-icons icon-cloud-download-93"></i>Logout
             </a>
           </li>
         </ul>
@@ -96,108 +96,62 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <div class="container">
-        {% comment %} <div class="content-center brand">
-          <h1 class="h3-seo">Hello username!</h1>
-          <h3>Create your business or access your existing business!</h3>
-        </div> {% endcomment %}
-      </div>
-    
-    <div class="wrapper">
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         <div class="content-center brand">
-          <form class="form" method="POST" novalidate>
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-              <div class='alert alert-danger' style='list-style-type: none;'>
-              {{ form.non_field_errors }}
-              </div>
-            {% endif %}
-            <div class="row">
-            <div class="form-group">
-            {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                {{ form.billID.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.billID.id_for_label }}">bill ID</label>
-                {{ form.billID|add_class:'form-control' }}
-            </div>
-            </div>
-            <!-- <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger'>
-                  {{ form.status.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.status.id_for_label }}">Price</label>
-                {{ form.status|add_class:'form-control' }}
-              </div>
-            </div> -->
-            <div class="row">
-            <div class="form-group">
-              {% if form.status.errors %}
-              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.salesID.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.salesID.id_for_label }}">sales ID</label>
-                {{ form.salesID|add_class:'form-control' }}
-            </div>
-            </div>
-            <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.date.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.date.id_for_label }}">Date</label>
-                <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.date class="form-control" %}
-              </div>
-            </div>
-            <!-- <div class="form-group">
-              <label class="label-control">Datetime Picker</label>
-              <input type="text" class="form-control datepicker" value="10/05/2016"/>
-          </div> -->
-
-            <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.debit.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.debit.id_for_label }}">Debit Amount</label>
-                <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.debit class="form-control" %}
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.credit.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.credit.id_for_label }}">Credit Amount</label>
-                <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.credit class="form-control" %}
-              </div>
-            </div>
-            
-            <input class="btn btn-info btn-round btn-lg" type="Submit" value="Submit"/>
-          </form>
-          
+          <h1 class="h3-seo">Transactions</h1>
+          <h3></h3>
+        </div> 
+      </div>
+    
+    {% comment %} <div class="wrapper">{% endcomment %}
+      <div class="row"> 
+        <div class="content-center brand">
+           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th>Bill ID</th>
+                <th>Invoice ID</th>
+                <th>Date</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <!-- <th>Status</th> -->
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for data in dataset %}
+              <tr>
+                  <td class="text-center">{{ data.transactionID }}</td>
+                  <!-- <td>{{ data.salesID }}</td> -->
+                  <td>{{ data.billID }}</td>
+                  <td>{{ data.salesID }}</td>
+                  <td>{{ data.date }}</td>
+                  <td class="text-right">{{ data.credit }}</td>
+                  <td class="text-right">{{ data.debit }}</td>
+                  <td class="td-actions text-right">
+                  <a href="update_transactions/?id={{data.transactionID}}">
+                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                      <i class="tim-icons icon-settings-gear-63"></i>
+                    </button>
+                  </a>
+                  <a href='delete_transactions/?id={{data.transactionID}}'>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                  </a>
+                  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
-    </div> 
+    {% comment %}</div>  {% endcomment %}
 
-  </div>
+    </div>
 
 
 

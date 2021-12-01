@@ -92,28 +92,6 @@ def invoices(request):
     context = {'form':form }
     return render(request, 'invoice.html', context)
 
-@login_required
-def update_invoices(request):
-    context = {}
-    
-    id = request.GET.get('id','')
-
-    # fetch the object related to passed id
-    obj = get_object_or_404(Sales, salesID=id)
-
-    # pass the object as instance in form
-    form = InvoiceForm(request.POST or None, instance=obj)
-
-    # save the data from the form and
-    # redirect to detail_view
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/update_sales/"+id)
-
-    # add form dictionary to context
-    context["form"] = form
-
-    return render(request, "update_invoices.html", context)
 
 
 @login_required
@@ -133,6 +111,28 @@ def view_purchases(request):
     return render(request, 'view_purchases.html', context)
 
 @login_required
+def update_invoices(request):
+    context = {}
+    
+    id = request.GET.get('id','')
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Sales, salesID=id)
+
+    # pass the object as instance in form
+    form = InvoiceForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect("/update_sales/?id="+id)
+
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "update_invoices.html", context)
+
+@login_required
 def update_purchases(request):
     context = {}
     
@@ -148,7 +148,7 @@ def update_purchases(request):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/update_purchases/"+id)
+        return redirect("/update_purchases/?id="+id)
 
     # add form dictionary to context
     context["form"] = form
@@ -167,6 +167,8 @@ def delete_purchases(request):
         # after deleting redirect to
         # home page
         return HttpResponseRedirect("view_purchases")
+    return render(request, "delete_purchases.html", context)
+    
 
 
 
@@ -214,17 +216,64 @@ def transaction(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-            obj = Transaction()  # gets new object
-            obj.transactionID = form.cleaned_data['transactionID']
-            obj.billID = form.cleaned_data['billID']
-            obj.date = form.cleaned_data['date']
-            obj.debit = form.cleaned_data['debit']
-            obj.credit = form.cleaned_data['credit']
-            ##
-            obj.save()
+            # obj = Transaction()  # gets new object
+            # obj.transactionID = form.cleaned_data['transactionID']
+            # obj.billID = form.cleaned_data['billID']
+            # obj.date = form.cleaned_data['date']
+            # obj.debit = form.cleaned_data['debit']
+            # obj.credit = form.cleaned_data['credit']
+            # ##
+            # obj.save()
+            form.save()
             return HttpResponseRedirect('transaction')
 
     else:
         form = TransactionForm()
 
     return render(request, 'transaction.html', {'form': form})
+
+@login_required
+def update_transactions(request):
+    context = {}
+    
+    id = request.GET.get('id','')
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Transaction, transactionID=id)
+
+    # pass the object as instance in form
+    form = TransactionForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        # return redirect("/update_transactions/?id="+id)
+
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "update_transactions.html", context)
+
+
+@login_required
+def view_transactions(request):
+    context = {}
+
+    context["dataset"] =Transaction.objects.all()
+
+    return render(request, 'view_transactions.html', context)
+
+@login_required
+def delete_transactions(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Transaction, transactionID=id)
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        return HttpResponseRedirect("view_transactions")
+
+    return render(request, "delete_transactions.html", context)

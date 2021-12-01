@@ -129,6 +129,18 @@
             <div class="row">
               <div class="form-group">
                 {% if form.status.errors %}
+                <div class='alert alert-danger'>
+                  {{ form.status.errors }}
+                </div>
+                {% endif %}
+                <label for="{{ form.status.id_for_label }}">Price Paid?</label>
+                <!-- {{ form.status|add_class:'form-control' }} -->
+                {% render_field form.status class="form-control" %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                {% if form.status.errors %}
                 <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
                   {{ form.businessID.errors }}
                 </div>

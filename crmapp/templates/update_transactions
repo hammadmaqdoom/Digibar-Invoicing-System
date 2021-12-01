@@ -110,94 +110,80 @@
           <form class="form" method="POST" novalidate>
             {% csrf_token %}
             {% if form.non_field_errors %}
-              <div class='alert alert-danger' style='list-style-type: none;'>
+            <div class='alert alert-danger' style='list-style-type: none;'>
               {{ form.non_field_errors }}
-              </div>
+            </div>
             {% endif %}
             <div class="row">
-            <div class="form-group">
-            {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                {{ form.billID.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.billID.id_for_label }}">bill ID</label>
-                {{ form.billID|add_class:'form-control' }}
-            </div>
-            </div>
-            <!-- <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger'>
-                  {{ form.status.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.status.id_for_label }}">Price</label>
-                {{ form.status|add_class:'form-control' }}
-              </div>
-            </div> -->
-            <div class="row">
-            <div class="form-group">
-              {% if form.status.errors %}
-              <div class='alert alert-danger alert-with-icon' style='list-style-type: none;'>
-                {{ form.salesID.errors }}
-                </div>
-                {% endif %}
-                <label for="{{ form.salesID.id_for_label }}">sales ID</label>
-                {{ form.salesID|add_class:'form-control' }}
-            </div>
-            </div>
-            <div class="row">
               <div class="form-group">
                 {% if form.status.errors %}
                 <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.date.errors }}
+                  {{ form.billID.errors }}
                 </div>
                 {% endif %}
-                <label for="{{ form.date.id_for_label }}">Date</label>
+                <label for="{{ form.billID.id_for_label }}">Bill ID</label>
                 <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.date class="form-control" %}
+                {% render_field form.billID class="form-control" %}
               </div>
             </div>
-            <!-- <div class="form-group">
-              <label class="label-control">Datetime Picker</label>
-              <input type="text" class="form-control datepicker" value="10/05/2016"/>
-          </div> -->
-
             <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.debit.errors }}
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.salesID.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.salesID.id_for_label }}">Invoice ID</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.salesID class="form-control" %}
                 </div>
-                {% endif %}
-                <label for="{{ form.debit.id_for_label }}">Debit Amount</label>
-                <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.debit class="form-control" %}
               </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group">
-                {% if form.status.errors %}
-                <div class='alert alert-danger' style='list-style-type: none;'>
-                  {{ form.credit.errors }}
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.date.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.date.id_for_label }}">Date</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.date class="form-control" %}
                 </div>
-                {% endif %}
-                <label for="{{ form.credit.id_for_label }}">Credit Amount</label>
-                <!-- {{ form.companyID|add_class:'form-control' }} -->
-                {% render_field form.credit class="form-control" %}
               </div>
-            </div>
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.debit.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.debit.id_for_label }}">Debit Amount</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.debit class="form-control" %}
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.credit.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.credit.id_for_label }}">Credit Amount</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.credit class="form-control" %}
+                </div>
+              </div>
             
-            <input class="btn btn-info btn-round btn-lg" type="Submit" value="Submit"/>
+            <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit" />
           </form>
           
         </div>
       </div>
-    </div> 
+  </div> 
 
-  </div>
+    </div>
 
 
 

@@ -149,6 +149,10 @@
                   </div>
                 </div>
               </div>
+              <div class="card-footer text-center">
+                <a href='{% url 'view_transactions' %}' class="btn btn-primary btn-simple">List All</a>
+                <a href='{% url 'transaction' %}' class="btn btn-primary btn-simple">Record</a>
+              </div>
             </div>
           </div>
         </div>
@@ -186,7 +190,6 @@
                           <tr>
                             <th class="header">Invoice No.</th>
                             <th class="header">Company Name</th>
-                            <th class="header">Items</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -195,7 +198,6 @@
                           <tr>
                             <td>{{ sale.salesID }}</td>
                             <td>{{ sale.companyID }}</td>
-                            <td>{{ sale.itemID }}</td>
                           </tr>
                           {% endfor %}
                             </ul>
@@ -269,7 +271,7 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <a href='{% url 'view_invoices' %}' class="btn btn-primary btn-simple">List All</a>
+                <a href='{% url 'view_purchases' %}' class="btn btn-primary btn-simple">List All</a>
                 <a href='{% url 'purchases' %}' class="btn btn-success btn-simple">Record Purchase</a>
               </div>
             </div>
