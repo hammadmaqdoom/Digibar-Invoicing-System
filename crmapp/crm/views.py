@@ -205,25 +205,6 @@ def delete_purchases(request):
         return redirect("/delete_purchases/?id="+id)
     context["form"] = form
     return render(request, "delete_purchases.html", context)
-<<<<<<< HEAD
-    
-=======
-
-@login_required
-def delete_invoices(request):
-    context = {}
-    # fetch the object related to passed id
-    id = request.GET.get('id','')
-    obj = get_object_or_404(Sales, salesID=id)
-    if request.method == "POST":
-        # delete object
-        obj.delete()
-        # after deleting redirect to
-        # home page
-        return HttpResponseRedirect("view_invoices")
-
-    return render(request, "delete_sales.html", context)
->>>>>>> 36dba287ee199ef23c2fb9c45d3de676daeef69e
 
 @login_required
 def productandservice(request):
@@ -247,50 +228,56 @@ def productandservice(request):
 
     return render(request, 'productandservice.html', context)
 
-# @login_required
-# def view_productandservices(request):
-#     context = {}
+@login_required
+def view_productandservices(request):
+    context = {}
 
-#     context["dataset"] = ProductsAndServices.objects.all()
+    context["dataset"] = ProductsAndServices.objects.all()
 
-#     return render(request, 'view_productandservices.html', context)
+    return render(request, 'view_productandservices.html', context)
 
-# @login_required
-# def update_productandservices(request):
-#     context = {}
+@login_required
+def update_productandservices(request):
+    context = {}
     
-#     id = request.GET.get('id','')
+    id = request.GET.get('id','')
 
-#     # fetch the object related to passed id
-#     obj = get_object_or_404(ProductsAndServices, itemID=id)
+    # fetch the object related to passed id
+    obj = get_object_or_404(ProductsAndServices, itemID=id)
 
-#     # pass the object as instance in form
-#     form = ProductsAndServicesForm(request.POST or None, instance=obj)
+    # pass the object as instance in form
+    form = ProductsAndServicesForm(request.POST or None, instance=obj)
 
-#     # save the data from the form and
-#     # redirect to detail_view
-#     if form.is_valid():
-#         form.save()
-#         return redirect("/update_productandservices/?id="+id)
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect("/update_productandservices/?id="+id)
 
-#     # add form dictionary to context
-#     context["form"] = form
+    # add form dictionary to context
+    context["form"] = form
 
-#     return render(request, "update_productandservices.html", context)
+    return render(request, "update_productandservices.html", context)
 
-# @login_required
-# def delete_productandservices(request):
-#     context = {}
-#     # fetch the object related to passed id
-#     id = request.GET.get('id','')
-#     obj = get_object_or_404(ProductsAndServices, itemID=id)
-#     if request.method == "POST":
-#         # delete object
-#         obj.delete()
-#         # after deleting redirect to
-#         # home page
-#         return HttpResponseRedirect("delete_productandservices")
-#     return render(request, "delete_purchases.html", context)
+@login_required
+def delete_productandservices(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(ProductsAndServices, itemID=id)
+    form = ProductsAndServicesForm(request.POST or None, instance=obj)
+
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        # return HttpResponseRedirect("view_purchases")
+    if form.is_valid():
+        form.save()
+        return redirect("/delete_productandservices/?id="+id)
+    context["form"] = form
+    return render(request, "delete_productandservices.html", context)
     
 
 

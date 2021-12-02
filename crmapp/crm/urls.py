@@ -17,18 +17,17 @@ urlpatterns = [
     path("land", views.landinglogin, name='land'),
     path("transaction", views.transaction, name='transaction'),
     path("view_invoices",views.view_invoices, name='view_invoices'),
-    path('delete_invoices', views.delete_invoices, name='delete_invoices' ),
+    path('delete_invoices/', views.delete_invoices, name='delete_invoices' ),
     path('update_invoices/', views.update_invoices, name='update_invoices' ),
     path("view_purchases",views.view_purchases, name='view_purchases'),
     path('delete_purchases/', views.delete_purchases, name='delete_purchases' ),
     path('update_purchases/', views.update_purchases, name='update_purchases' ),
-<<<<<<< HEAD
-    path('view_transactions/', views.view_transactions, name='view_transactions' ),
-=======
     path('view_transactions', views.view_transactions, name='view_transactions' ),
->>>>>>> 7903cf6eb4a3b166ac0d0a805a90ec2d5632cc9a
     path('delete_transactions/', views.delete_transactions, name='delete_transactions' ),
     path('update_transactions/', views.update_transactions, name='update_transactions' ),
+    path("view_productandservices", views.view_productandservices, name='view_productandservices' ),
+    path('delete_productandservices/', views.delete_productandservices, name='delete_productandservices' ),
+    path('update_productandservices/', views.update_productandservices, name='update_productandservices' ),
 
 
 ]
