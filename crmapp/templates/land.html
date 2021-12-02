@@ -82,13 +82,13 @@
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         <div class="content-center brand">
-          <h1 class="h3-seo">Hello username!</h1>
+          <h1 class="h3-seo">Hello {{ username }}!</h1>
           <h3>Create your business or access your existing business!</h3>
         </div>
       </div>
     
     <section class="section section-lg section-coins">
-      <img src="../assets/img/path3.png" class="path">
+      <img src="{% static './img/path3.png'%}" class="path">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -99,7 +99,9 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12 text-center">
+                    <a href = "#">
                     <h4 class="text-uppercase">Create a new Business?</h4>
+                    </a>
                     <span></span>
                     <hr class="line-primary">
                   </div>
@@ -125,9 +127,9 @@
                 </div>
                 <div class="row">
                   <ul class="list-group">
-                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 1</a>
-                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 2</a>
-                    <a class="list-group-item" href="{% url 'dashboard' %}">Business Name 3</a>
+                    {% for bsns in businesses %}
+                    <a class="list-group-item" href="{% url 'dashboard' %}">{{ bsns }}</a>
+                    {% endfor %}
                   </ul>
                 </div>
               </div>

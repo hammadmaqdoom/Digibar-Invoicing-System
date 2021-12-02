@@ -132,7 +132,8 @@
                   <td class="text-right">{{ data.credit }}</td>
                   <td class="text-right">{{ data.debit }}</td>
                   <td class="td-actions text-right">
-                  <a href="update_transactions/?id={{data.transactionID}}">
+                  {% comment %} <a href="update_transactions/?id={{}}"> {% endcomment %}
+                  <a href="{% url 'update_transactions/?id=data.transactionID' %}">
                     <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                       <i class="tim-icons icon-settings-gear-63"></i>
                     </button>

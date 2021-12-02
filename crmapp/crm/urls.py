@@ -23,7 +23,7 @@ urlpatterns = [
     path('delete_purchases/', views.delete_purchases, name='delete_purchases' ),
     path('update_purchases/', views.update_purchases, name='update_purchases' ),
     path('view_transactions/', views.view_transactions, name='view_transactions' ),
-    path('delete_transactions/', views.update_transactions, name='delete_transactions' ),
+    path('delete_transactions/', views.delete_transactions, name='delete_transactions' ),
     path('update_transactions/', views.update_transactions, name='update_transactions' ),
 
 

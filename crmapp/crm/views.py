@@ -7,14 +7,23 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from crmapp.forms import PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm
-from crm.models import Sales, Purchases, ProductsAndServices, Transaction
+from crm.models import Sales, Purchases, ProductsAndServices, Transaction, Business
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def index(request):
     return render(request, 'home.html', {})
 
 def landinglogin(request):
-    return render(request, 'land.html', {})
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
+
+    business = Business.objects.all()
+
+    context = {'username':username, 'businesses':business}
+    return render(request, 'land.html', context)
 
 @login_required
 def dashboard(request):
@@ -168,10 +177,6 @@ def delete_purchases(request):
         # home page
         return HttpResponseRedirect("view_purchases")
     return render(request, "delete_purchases.html", context)
-    
-
-
-
 
 @login_required
 def delete_invoices(request):
@@ -248,7 +253,7 @@ def update_transactions(request):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        # return redirect("/update_transactions/?id="+id)
+        return redirect("/update_transactions/?id="+id)
 
     # add form dictionary to context
     context["form"] = form
