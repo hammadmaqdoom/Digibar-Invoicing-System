@@ -7,14 +7,23 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from crmapp.forms import PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm
-from crm.models import Sales, Purchases, ProductsAndServices, Transaction
+from crm.models import Sales, Purchases, ProductsAndServices, Transaction, Business
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def index(request):
     return render(request, 'home.html', {})
 
 def landinglogin(request):
-    return render(request, 'land.html', {})
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
+
+    business = Business.objects.all()
+
+    context = {'username':username, 'businesses':business}
+    return render(request, 'land.html', context)
 
 @login_required
 def dashboard(request):
@@ -196,7 +205,25 @@ def delete_purchases(request):
         return redirect("/delete_purchases/?id="+id)
     context["form"] = form
     return render(request, "delete_purchases.html", context)
+<<<<<<< HEAD
     
+=======
+
+@login_required
+def delete_invoices(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Sales, salesID=id)
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        return HttpResponseRedirect("view_invoices")
+
+    return render(request, "delete_sales.html", context)
+>>>>>>> 36dba287ee199ef23c2fb9c45d3de676daeef69e
 
 @login_required
 def productandservice(request):
