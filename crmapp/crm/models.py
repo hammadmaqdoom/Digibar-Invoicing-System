@@ -7,7 +7,7 @@ class Company(models.Model):
     companyName = models.CharField(max_length=64)
     companyEmail = models.EmailField(max_length=254)
     companyPhoneNumber = models.IntegerField()
-    is_client = models.BooleanField(default=True)
+    # is_client = models.BooleanField(default=True)
 
     def __str__(self):
         return self.companyName

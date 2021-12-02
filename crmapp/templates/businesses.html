@@ -12,12 +12,12 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static './img/favicon.png' %}">
   <title>
-    Dashboard • Digibar
+    Invoice • Digibar
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -29,15 +29,16 @@
   <link href="{% static './demo/demo.css' %}" rel="stylesheet" />
 </head>
 
-<body class="landing-page">
+<body class="login-page">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="#" target="">
-          <span>Dbar•</span> 
+          <span>Dbar•</span>
         </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
           <span class="navbar-toggler-bar bar2"></span>
           <span class="navbar-toggler-bar bar3"></span>
@@ -52,13 +53,31 @@
               </a>
             </div>
             <div class="col-6 collapse-close text-right">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="tim-icons icon-simple-remove"></i>
               </button>
             </div>
           </div>
         </div>
         <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'invoices' %}">Sales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'purchases' %}">Purchases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'transaction' %}">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'productandservice' %}">Product and Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'dashboard' %}">
+              <i class="tim-icons icon-cloud-download-93"></i> Dashboard
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'logout' %}">
               <i class="tim-icons icon-cloud-download-93"></i> Logout
@@ -70,7 +89,7 @@
   </nav>
   <!-- End Navbar -->
 
-<div class="wrapper">
+  <div class="wrapper">
     <div class="page-header header-filter">
       <div class="squares square1"></div>
       <div class="squares square2"></div>
@@ -79,77 +98,84 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
-        <div class="content-center brand">
-          <h1 class="h3-seo">Hello {{ username }}!</h1>
+        {% comment %} <div class="content-center brand">
+          <h1 class="h3-seo">Hello username!</h1>
           <h3>Create your business or access your existing business!</h3>
-        </div>
+        </div> {% endcomment %}
       </div>
-    
-    <section class="section section-lg section-coins">
-      <img src="{% static './img/path3.png'%}" class="path">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <!-- <img src="{% static './img/bitcoin.png' %}" class="img-center img-fluid"> -->
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <a href = "#">
-                    <h4 class="text-uppercase">Create a new Business?</h4>
-                    </a>
-                    <span></span>
-                    <hr class="line-primary">
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <a href="{% url 'businesses' %}">
-                  <button class="btn btn-primary btn-simple">Start Now!</button>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <!-- <img src="{% static './img/etherum.png' %}" class="img-center img-fluid"> -->
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Access existing business</h4>
-                    <span></span>
-                    <hr class="line-success">
-                  </div>
-                </div>
-                <div class="row">
-                  <ul class="list-group">
-                    {% for bsns in businesses %}
-                    <a class="list-group-item" href="{% url 'dashboard' %}">{{ bsns }}</a>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                {% comment %} <button class="btn btn-success btn-simple">Get plan</button> {% endcomment %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
+      <div class="wrapper">
+        <div class="container">
+          <div class="content-center brand">         
+            <form class="form" method="POST" novalidate>
+              {% csrf_token %}
+              {% if form.non_field_errors %}
+              <div class='alert alert-danger' style='list-style-type: none;'>
+                {{ form.non_field_errors }}
+              </div>
+              {% endif %}
+              <div class="row">
+                <div class="form-group">
+                  {% if form.status.errors %}
+                  <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.businessName.errors }}
+                  </div>
+                  {% endif %}
+                  <label for="{{ form.businessName.id_for_label }}">Business Name</label>
+                  <!-- {{ form.companyID|add_class:'form-control' }} -->
+                  {% render_field form.businessName class="form-control" %}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                {% if form.status.errors %}
+                    <div class='alert alert-danger' style='list-style-type: none;'>
+                    {{ form.organisationType.errors }}
+                    </div>
+                    {% endif %}
+                    <label for="{{ form.organisationType.id_for_label }}">Organisation Type</label>
+                    {{ form.organisationType|add_class:'form-control' }}
+                </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                    {% if form.status.errors %}
+                        <div class='alert alert-danger' style='list-style-type: none;'>
+                        {{ form.businessType.errors }}
+                        </div>
+                        {% endif %}
+                        <label for="{{ form.businessType.id_for_label }}">Business Type</label>
+                        {{ form.businessType|add_class:'form-control' }}
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                        {% if form.status.errors %}
+                            <div class='alert alert-danger' style='list-style-type: none;'>
+                            {{ form.currency.errors }}
+                            </div>
+                            {% endif %}
+                            <label for="{{ form.currency.id_for_label }}">Currency</label>
+                            {{ form.currency|add_class:'form-control' }}
+                        </div>
+                        </div>
+                    
+            
+
+              
+              <input class="btn btn-info btn-round btn-lg" type="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
 
     </div>
 
 
 
-      
+
 
 
   </div>

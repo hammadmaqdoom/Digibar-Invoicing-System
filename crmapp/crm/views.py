@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from crmapp.forms import PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm
-from crm.models import Sales, Purchases, ProductsAndServices, Transaction, Business
+from crmapp.forms import PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm, BusinessForm, CompanyForm
+from crm.models import Sales, Purchases, ProductsAndServices, Transaction, Business, Company
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -57,6 +57,150 @@ def userlogin(request):
 @login_required
 def quotations(request):
     return HttpResponse("Quotations")
+
+@login_required
+def businesses(request):
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            # Items = ProductsAndServices()
+            # obj = Sales() #gets new object
+            # obj.companyID = form.cleaned_data['companyID']
+            # obj.businessID = form.cleaned_data['businessID']
+            # # obj.items  = form.cleaned_data['items']
+            # items = ProductsAndServices.objects.filter()
+            # obj.items.set(form.cleaned_data['items'])
+            # # obj.items = Items.objects.filter(itemID=inst)
+            # obj.status = form.cleaned_data['status']
+            # #finally save the object in db
+            # obj.save()
+            form.save()
+            return HttpResponseRedirect('businesses')
+    else:
+        form =BusinessForm()
+    context = {'form':form }
+    return render(request, 'businesses.html', context)
+
+@login_required
+def view_businesses(request):
+    context = {}
+
+    context["dataset"] = Business.objects.all()
+
+    return render(request, 'view_businesses.html', context)
+
+@login_required
+def update_businesses(request):
+    context = {}
+    
+    id = request.GET.get('id','')
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Business, businessID=id)
+
+    # pass the object as instance in form
+    form = BusinessForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect("/update_businesses/?id="+id)
+
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "update_businesses.html", context)
+
+@login_required
+def delete_businesses(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Business, businessID=id)
+    form = BusinessForm(request.POST or None, instance=obj)
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+    if form.is_valid():
+        form.save()
+        return redirect("/delete_businesses/?id="+id)
+
+    return render(request, "delete_businesses.html", context)
+
+
+@login_required
+def companies(request):
+    if request.method == 'POST':
+        form = CompanyForm(request.POST)
+        if form.is_valid():
+            # Items = ProductsAndServices()
+            # obj = Sales() #gets new object
+            # obj.companyID = form.cleaned_data['companyID']
+            # obj.businessID = form.cleaned_data['businessID']
+            # # obj.items  = form.cleaned_data['items']
+            # items = ProductsAndServices.objects.filter()
+            # obj.items.set(form.cleaned_data['items'])
+            # # obj.items = Items.objects.filter(itemID=inst)
+            # obj.status = form.cleaned_data['status']
+            # #finally save the object in db
+            # obj.save()
+            form.save()
+            return HttpResponseRedirect('companies')
+    else:
+        form =CompanyForm()
+    context = {'form':form }
+    return render(request, 'companies.html', context)
+
+@login_required
+def view_companies(request):
+    context = {}
+
+    context["dataset"] = Company.objects.all()
+
+    return render(request, 'view_companies.html', context)
+
+@login_required
+def update_companies(request):
+    context = {}
+    
+    id = request.GET.get('id','')
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Company, companyID=id)
+
+    # pass the object as instance in form
+    form = CompanyForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect("/update_companies/?id="+id)
+
+    # add form dictionary to context
+    context["form"] = form
+    return render(request, "update_companies.html", context)
+
+@login_required
+def delete_companies(request):
+    context = {}
+    # fetch the object related to passed id
+    id = request.GET.get('id','')
+    obj = get_object_or_404(Company, companyID=id)
+    form = CompanyForm(request.POST or None, instance=obj)
+    if request.method == "POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+    if form.is_valid():
+        form.save()
+        return redirect("/delete_companies/?id="+id)
+
+    return render(request, "delete_companies.html", context)
+
 
 @login_required
 def invoices(request):

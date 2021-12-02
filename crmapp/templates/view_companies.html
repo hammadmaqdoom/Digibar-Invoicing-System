@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static './img/favicon.png' %}">
   <title>
-    Dashboard • Digibar
+    Invoice • Digibar
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -59,9 +59,26 @@
           </div>
         </div>
         <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'invoices' %}">Sales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'purchases' %}">Purchases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'transaction' %}">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'productandservice' %}">Product and Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'dashboard' %}">
+              <i class="tim-icons icon-cloud-download-93"></i> Dashboard
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="{% url 'logout' %}">
-              <i class="tim-icons icon-cloud-download-93"></i> Logout
+              <i class="tim-icons icon-cloud-download-93"></i>Logout
             </a>
           </li>
         </ul>
@@ -79,71 +96,58 @@
       <div class="squares square5"></div>
       <div class="squares square6"></div>
       <div class="squares square7"></div>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <div class="container">
         <div class="content-center brand">
-          <h1 class="h3-seo">Hello {{ username }}!</h1>
-          <h3>Create your business or access your existing business!</h3>
-        </div>
+          <h1 class="h3-seo">Companies</h1>
+          <h3></h3>
+        </div> 
       </div>
     
-    <section class="section section-lg section-coins">
-      <img src="{% static './img/path3.png'%}" class="path">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <!-- <img src="{% static './img/bitcoin.png' %}" class="img-center img-fluid"> -->
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <a href = "#">
-                    <h4 class="text-uppercase">Create a new Business?</h4>
-                    </a>
-                    <span></span>
-                    <hr class="line-primary">
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <a href="{% url 'businesses' %}">
-                  <button class="btn btn-primary btn-simple">Start Now!</button>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-coin card-plain">
-              <div class="card-header">
-                <!-- <img src="{% static './img/etherum.png' %}" class="img-center img-fluid"> -->
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12 text-center">
-                    <h4 class="text-uppercase">Access existing business</h4>
-                    <span></span>
-                    <hr class="line-success">
-                  </div>
-                </div>
-                <div class="row">
-                  <ul class="list-group">
-                    {% for bsns in businesses %}
-                    <a class="list-group-item" href="{% url 'dashboard' %}">{{ bsns }}</a>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                {% comment %} <button class="btn btn-success btn-simple">Get plan</button> {% endcomment %}
-              </div>
-            </div>
-          </div>
+    {% comment %} <div class="wrapper">{% endcomment %}
+      <div class="row"> 
+        <div class="content-center brand">
+           <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-center">#</th>
+                <th>Company Name</th>
+                <th>Company Email</th>
+                <th>Company Phone Number</th>
+                <!-- <th>Price</th> -->
+                <!-- <th class="text-right">Price</th> -->
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for data in dataset %}
+              <tr>
+                  <td class="text-center">{{ data.companyID }}</td>
+                  <!-- <td>{{ data.billID }}</td> -->
+                  <td>{{ data.companyName }}</td>
+                  <td>{{ data.companyEmail }}</td>
+                  <td>{{ data.companyPhoneNumber}}</td>
+                  <!-- <td class="text-right">{{ data.status }}</td> -->
+                  <td class="td-actions text-right">
+                  <a href="update_companies/?id={{data.businessID}}">
+                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                      <i class="tim-icons icon-settings-gear-63"></i>
+                    </button>
+                  </a>
+                  <a href='delete_companies/?id={{data.businessesID}}'>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                  </a>
+                  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
-    </section>
-
+    {% comment %}</div>  {% endcomment %}
 
     </div>
 

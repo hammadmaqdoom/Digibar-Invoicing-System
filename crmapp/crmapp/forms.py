@@ -6,11 +6,10 @@ from crm.models import Company, Purchases, Sales, Transaction, ProductsAndServic
 # Create your forms here.
 
 
-class Company(forms.Form):  # modelForm
+class CompanyForm(forms.ModelForm):  # modelForm
     class Meta():
         model = Company
-        fields = ('companyName', 'companyEmail',
-                  'companyPhoneNumber', 'is_client')
+        fields = ('companyName', 'companyEmail','companyPhoneNumber')
 
 # class Users(forms.Form):
 #     userName = forms.CharField(max_length=100)
@@ -24,11 +23,10 @@ class Company(forms.Form):  # modelForm
 #     companyID = forms.ForeignKey(Company, on_delete=forms.CASCADE)
 
 
-class Business(forms.Form):
+class BusinessForm(forms.ModelForm):
     class Meta():
         model = Business
-        fields = ('businessID', 'businessName',
-                  'organisationType', 'businessType', 'currency')
+        fields = ('businessID', 'businessName','organisationType', 'businessType', 'currency')
 
 # class CompanyUsers(forms.Form):
 #     businessID = forms.ForeignKey(Business, on_delete=forms.CASCADE)

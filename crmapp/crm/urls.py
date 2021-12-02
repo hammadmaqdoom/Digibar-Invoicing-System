@@ -10,6 +10,8 @@ urlpatterns = [
     # path('usersignup', views.usersignup, name = 'usersignup'),
     path('quotations', views.quotations, name = 'quotations'),
     path('invoices', views.invoices, name = 'invoices'),
+    path('businesses', views.businesses, name = 'businesses'),
+    path('companies', views.companies, name = 'companies'),
     path('purchases', views.purchases, name = 'purchases'),
     path('productandservice', views.productandservice, name = 'productandservice'),
     path('dashboard', views.dashboard, name='dashboard'),
@@ -28,6 +30,12 @@ urlpatterns = [
     path("view_productandservices", views.view_productandservices, name='view_productandservices' ),
     path('delete_productandservices/', views.delete_productandservices, name='delete_productandservices' ),
     path('update_productandservices/', views.update_productandservices, name='update_productandservices' ),
+    path("view_companies", views.view_companies, name='view_companies' ),
+    path('delete_companies/', views.delete_companies, name='delete_companies' ),
+    path('update_companies/', views.update_companies, name='update_companies' ),
+    path("view_businesses", views.view_businesses, name='view_businesses' ),
+    path('delete_businesses/', views.delete_businesses, name='delete_businesses' ),
+    path('update_businesses/', views.update_businesses, name='update_businesses' ),
 
 
 ]
