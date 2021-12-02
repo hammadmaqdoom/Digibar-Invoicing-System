@@ -119,8 +119,8 @@
                       <table class="table tablesorter " id="plain-table">
                         <thead class=" text-primary">
                           <tr>
-                            <th class="header">Bill ID</th>
-                            <th class="header">Sales ID</th>
+                            <th class="header">Bill No.</th>
+                            <th class="header">Invoice No.</th>
                             <th class="header">Date</th>
                             <th class="header">Debit</th>
                             <th class="header">Credit</th>
@@ -190,14 +190,23 @@
                           <tr>
                             <th class="header">Invoice No.</th>
                             <th class="header">Company Name</th>
+                            <th class="header">Business Name</th>
+
                           </tr>
                         </thead>
                         <tbody>
                           {% if Sales %}
                           {% for sale in Sales %}
                           <tr>
-                            <td>{{ sale.salesID }}</td>
-                            <td>{{ sale.companyID }}</td>
+                            <td>
+                              {{ sale.salesID }}
+                            </td>
+                            <td>
+                              {{ sale.companyID }}
+                            </td>
+                            <td>
+                              {{ sale.businessID }}
+                            </td>
                           </tr>
                           {% endfor %}
                             </ul>
@@ -234,7 +243,7 @@
                         <thead class=" text-primary">
                           <tr>
                             <th class="header">
-                              Bill ID
+                              Bill No.
                             </th>
                             <th class="header">
                               Company Name
@@ -319,7 +328,7 @@
                     </div>
               </div>
               <div class="card-footer text-center">
-              <a href='{% url 'view_invoices' %}' class="btn btn-primary btn-simple">List All</a>
+              <a href='{% url 'view_purchases' %}' class="btn btn-primary btn-simple">List All</a>
                 <a href='{% url 'productandservice' %}' class="btn btn-success btn-simple">Add Product/Service</a>
               </div>
             </div>
