@@ -271,7 +271,7 @@
                             </ul>
                         {% else %}
                         <tr>
-                            <strong>There are no categories present.</strong>
+                            <strong>There are no purchases present.</strong>
                         </tr>
                         {% endif %}
                         </tbody>
@@ -334,6 +334,52 @@
             </div>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="card card-coin card-plain">
+            <div class="card-header">
+              {% comment %} <img src="../assets/img/ripp.png" class="img-center img-fluid"> {% endcomment %}
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h4 class="text-uppercase">Companies</h4>
+                  {% comment %} <span>Plan</span> {% endcomment %}
+                  <hr class="line-info">
+                </div>
+              </div>
+              <div class="row">
+                <div class="table-responsive justify-content-center">
+                    <table class="table tablesorter " id="plain-table">
+                      {% if Companies %}
+                      <thead class=" text-primary">
+                        <tr>
+                          <th class="header">Company ID</th>
+                          <th class="header">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       
+                        {% for company in Companies %}
+                        <tr>
+                          <td>{{ company.companyID }}</td>
+                          <td>{{ company.companyName }}</td>
+                        </tr>
+                        {% endfor %}
+                          </ul>
+                      </tbody>
+                      {% else %}
+                      <tr>
+                          <strong>There are no Companies present.</strong>
+                      </tr>
+                      {% endif %}
+                    </table>
+                  </div>
+            </div>
+            <div class="card-footer text-center">
+            <a href='{% url 'view_companies' %}' class="btn btn-primary btn-simple">List All</a>
+              <a href='{% url 'companies' %}' class="btn btn-success btn-simple">Add Company</a>
+            </div>
+          </div>
       </div>
     </section>
     

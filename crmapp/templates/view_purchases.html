@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static './img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static './img/favicon.png' %}">
   <title>
-    Invoice • Digibar
+    All Purchases • Digibar
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -114,7 +114,8 @@
                 <th class="text-center">#</th>
                 <th>Company</th>
                 <th>Business</th>
-                <!-- <th>Price</th> -->
+                <th>Items</th>
+                <th>Total</th>
                 <!-- <th class="text-right">Price</th> -->
                 <th class="text-right">Actions</th>
               </tr>
@@ -126,13 +127,15 @@
                   <!-- <td>{{ data.billID }}</td> -->
                   <td>{{ data.companyID }}</td>
                   <td>{{ data.businessID }}</td>
+                  <td>{{ data.get_item_values }}</td>
+                  <td>{{ data.get_total}}</td>
                   <!-- <td class="text-right">{{ data.status }}</td> -->
                   <td class="td-actions text-right">
-                  <a href="update_purchases/?id={{data.billID}}">
-                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                      <i class="tim-icons icon-settings-gear-63"></i>
-                    </button>
-                  </a>
+                    <a href="update_purchases/?id={{data.billID}}">
+                      <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </a>
                   <a href='delete_purchases/?id={{data.billID}}'>
                     <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                         <i class="tim-icons icon-simple-remove"></i>

@@ -3,14 +3,28 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from crmapp.forms import PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm, BusinessForm, CompanyForm
+from crmapp.forms import SignUpForm, PurchasesForm, InvoiceForm, ProductsAndServicesForm, TransactionForm, BusinessForm, CompanyForm
 from crm.models import Sales, Purchases, ProductsAndServices, Transaction, Business, Company
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
+
+def signup(request):
+	if request.method == "POST":
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("main:homepage")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = SignUpForm()
+	return render (request=request, template_name="signup.html", context={"register_form":form})
 
 def index(request):
     return render(request, 'home.html', {})
@@ -31,8 +45,9 @@ def dashboard(request):
     Purchases_list = Purchases.objects.order_by('billID')[:5]
     PNS_list = ProductsAndServices.objects.order_by('itemID')[:5]
     Trans_list = Transaction.objects.order_by('transactionID')[:5]
+    companies_list = Company.objects.order_by('companyID')[:5]
     context_dict = {'Sales': sales_list, 'Purchases': Purchases_list,
-                    'ProductandServices': PNS_list, 'Transaction': Trans_list}
+                    'ProductandServices': PNS_list, 'Transaction': Trans_list, 'Companies': companies_list}
 
     # Render the response and send it back
     return render(request, 'dashboard.html', context_dict)
@@ -75,7 +90,7 @@ def businesses(request):
             # #finally save the object in db
             # obj.save()
             form.save()
-            return HttpResponseRedirect('businesses')
+            return HttpResponseRedirect('land')
     else:
         form =BusinessForm()
     context = {'form':form }
@@ -427,12 +442,17 @@ def delete_productandservices(request):
 
 @login_required
 def transaction(request):
+    # id = request.GET.get('id','')
+    # obj = get_object_or_404(Company, companyID=id)
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-            # obj = Transaction()  # gets new object
+           # obj = Transaction()  # gets new object
             # obj.transactionID = form.cleaned_data['transactionID']
+            # if 
             # obj.billID = form.cleaned_data['billID']
+            
+            # obj.salesID = form.cleaned_data['billID']
             # obj.date = form.cleaned_data['date']
             # obj.debit = form.cleaned_data['debit']
             # obj.credit = form.cleaned_data['credit']

@@ -114,6 +114,8 @@
                 <th class="text-center">#</th>
                 <th>Company</th>
                 <th>Business</th>
+                <th>Items</th>
+                <th>Total</th>
                 <!-- <th>Status</th> -->
                 <th class="text-right">Status</th>
                 <th class="text-right">Actions</th>
@@ -126,11 +128,13 @@
                   <!-- <td>{{ data.salesID }}</td> -->
                   <td>{{ data.companyID }}</td>
                   <td>{{ data.businessID }}</td>
+                  <td>{{ data.get_item_values }}</td>
+                  <td>{{ data.get_total}}</td>
                   <td class="text-right">{{ data.status }}</td>
                   <td class="td-actions text-right">
                   <a href="update_invoices/?id={{data.salesID}}">
                     <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                      <i class="tim-icons icon-settings-gear-63"></i>
+                      <i class="tim-icons icon-pencil"></i>
                     </button>
                   </a>
                   <a href='delete_invoices/?id={{data.salesID}}'>

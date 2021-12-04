@@ -132,23 +132,9 @@
                   <td class="text-right">{{ data.credit }}</td>
                   <td class="text-right">{{ data.debit }}</td>
                   <td class="td-actions text-right">
-<<<<<<< HEAD
-                  {% comment %} <a href="update_transactions/?id={{}}"> {% endcomment %}
-                  <a href="{% url 'update_transactions/?id=data.transactionID' %}">
-                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                      <i class="tim-icons icon-settings-gear-63"></i>
-                    </button>
-                  </a>
-                  <a href='delete_transactions/?id={{data.transactionID}}'>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                        <i class="tim-icons icon-simple-remove"></i>
-                    </button>
-                  </a>
-                  </td>
-=======
                     <a href="update_transactions/?id={{data.transactionID}}">
                       <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                        <i class="tim-icons icon-settings-gear-63"></i>
+                        <i class="tim-icons icon-pencil"></i>
                       </button>
                     </a>
                     <a href='delete_transactions/?id={{data.transactionID}}'>
@@ -157,7 +143,6 @@
                       </button>
                     </a>
                     </td>
->>>>>>> 7903cf6eb4a3b166ac0d0a805a90ec2d5632cc9a
               </tr>
             {% endfor %}
             </tbody>

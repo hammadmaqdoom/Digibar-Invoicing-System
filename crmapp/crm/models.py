@@ -92,6 +92,24 @@ class Sales(models.Model):
     )
     status = models.CharField(max_length=2, choices=STAT)
 
+    def get_item_values(self):
+        ret = ''
+        print(self.items.all())
+        # use models.ManyToMany field's all() method to return all the Department objects that this employee belongs to.
+        for item in self.items.all():
+            ret = ret + item.psName + ', '
+        # remove the last ',' and return the value.
+        return ret[:-1]
+
+    def get_total(self):
+        total = 0
+        print(self.items.all())
+        
+        for item in self.items.all():
+            print(item.rate)
+            total += item.rate
+        return total
+
     def __str__(self):
         return str(self.salesID)
 
@@ -107,6 +125,23 @@ class Purchases(models.Model):
         ('Unpaid', 'Unpaid')
     )
     status = models.CharField(max_length=64, choices=STAT)
+
+    def get_item_values(self):
+        ret = ''
+        print(self.items.all())
+        # use models.ManyToMany field's all() method to return all the Department objects that this employee belongs to.
+        for item in self.items.all():
+            ret = ret + item.psName + ', '
+        # remove the last ',' and return the value.
+        return ret[:-1]
+
+    def get_total(self):
+        total = 0
+        print(self.items.all())
+        
+        for item in self.items.all():
+            total += item.rate
+        return total
 
     def __str__(self):
         return str(self.billID)

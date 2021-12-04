@@ -36,7 +36,6 @@ urlpatterns = [
     path("view_businesses", views.view_businesses, name='view_businesses' ),
     path('delete_businesses/', views.delete_businesses, name='delete_businesses' ),
     path('update_businesses/', views.update_businesses, name='update_businesses' ),
-
-
+    path('signup', views.signup, name='signup'),
 ]
 
